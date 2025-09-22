@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class FuncionarioView {
     static Scanner input = new Scanner(System.in);
 
-
     // MENU FUNCIONARIO
     public static void menuFuncionario() {
         System.out.print("\n\n----- Funcionário -----\n\n");
@@ -14,7 +13,7 @@ public class FuncionarioView {
         System.out.println("2- Visualizar Colegas de Departamento");
         System.out.println("3- Trocar Senha");
         System.out.println("0- Sair do Sistema");
-        int opcao = input.nextInt();
+        int opcao = InputHelper.inputInteger("Escolha uma opção: ", input);
 
         switch (opcao) {
 
@@ -54,15 +53,9 @@ public class FuncionarioView {
     public static void trocarSenha() {
         System.out.println("\n\n----- Trocar de Senha -----\n\n");
 
-        System.out.println("Insira a senha atual: ");
-        String senhaAtual = input.nextLine();
-
-        System.out.println("\nInsira a nova senha: ");
-        String novaSenha = input.nextLine();
-
-        System.out.println("\nConfirme a nova senha: ");
-        String confirmacaoNovaSenha = input.nextLine();
-
+        String senhaAtual = InputHelper.inputString("Insira a senha atual", input);
+        String novaSenha = InputHelper.inputString("Insira a nova senha", input);
+        String confirmacaoNovaSenha = InputHelper.inputString("Confirme a nova senha:", input);
 
     }
 }
