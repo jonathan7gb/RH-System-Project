@@ -36,7 +36,7 @@ public class DepartamentoView {
         System.out.print("\n|| ------- Editar Departamento ------- ||");
 
         String nome = InputHelper.inputString("Nome do Departamento (" + departamento.getNome() + ") (Enter para manter): ", input);
-        String descricao = InputHelper.inputString("Descrição do Departamento (" + departamento.getDescricao() + ") (Enter para manter): ", input);
+        String descricao = InputHelper.inputString("Descrição do Departamento (Enter para manter): ", input);
 
         if(!nome.isBlank()){
             departamento.setNome(nome);

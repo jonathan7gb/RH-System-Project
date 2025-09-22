@@ -36,7 +36,7 @@ public class CargoView {
         System.out.print("\n|| ------- Editar Cargo ------- ||");
 
         String nome = InputHelper.inputString("Nome do Cargo (" + cargo.getNome() + ") (Enter para manter): ", input);
-        String descricao = InputHelper.inputString("Descrição do Cargo (" + cargo.getDescricao() + ") (Enter para manter): ", input);
+        String descricao = InputHelper.inputString("Descrição do Cargo (Enter para manter): ", input);
 
         if(!nome.isBlank()){
             cargo.setNome(nome);
