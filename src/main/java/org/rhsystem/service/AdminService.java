@@ -1,5 +1,4 @@
 package org.rhsystem.service;
 
-public class TesteNaoCodeAqui {
-
+public class AdminService {
 }
