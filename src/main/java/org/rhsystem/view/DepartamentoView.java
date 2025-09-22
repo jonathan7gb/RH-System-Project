@@ -27,8 +27,11 @@ public class DepartamentoView {
 
         String nome = InputHelper.inputString("Nome do Departamento: ", input);
         String descricao = InputHelper.inputString("Descrição do Departamento: ", input);
+        Departamento departamento = null;
 
-        Departamento departamento = new Departamento(nome, descricao);
+        if(!nome.isBlank() && !descricao.isBlank()){
+            departamento = new Departamento(nome, descricao);
+        }
         return departamento;
     }
 
@@ -51,9 +54,14 @@ public class DepartamentoView {
     public static void listarDepartamentos(List<Departamento> departamentos){
         System.out.print("\n|| ------- Listar Departamentos ------- ||\n");
 
-        System.out.printf("|| %-5s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
-        for (Departamento departamento : departamentos) {
-            System.out.printf("|| %-5d || %-20s || %-50s ||\n", departamento.getId(), departamento.getNome(), departamento.getDescricao());
+        if(departamentos.isEmpty()){
+            MessagesHelper.error("Nenhum departamento cadastrado.");
+            return;
+        }else {
+            System.out.printf("|| %-5s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
+            for (Departamento departamento : departamentos) {
+                System.out.printf("|| %-5d || %-20s || %-50s ||\n", departamento.getId(), departamento.getNome(), departamento.getDescricao());
+            }
         }
     }
 

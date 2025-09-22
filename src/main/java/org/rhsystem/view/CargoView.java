@@ -28,7 +28,11 @@ public class CargoView {
         String nome = InputHelper.inputString("Nome do Cargo: ", input);
         String descricao = InputHelper.inputString("Descrição do Cargo: ", input);
 
-        Cargo cargo = new Cargo(nome, descricao);
+        Cargo cargo = null;
+
+        if(!nome.isBlank() && !descricao.isBlank()){
+            cargo = new Cargo(nome, descricao);
+        }
         return cargo;
     }
 
@@ -51,9 +55,15 @@ public class CargoView {
     public static void listarCargos(List<Cargo> cargos){
         System.out.print("\n|| ------- Listar Cargos ------- ||\n");
 
-        System.out.printf("|| %-5s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
-        for (Cargo cargo : cargos) {
-            System.out.printf("|| %-5d || %-20s || %-50s ||\n", cargo.getId(), cargo.getNome(), cargo.getDescricao());
+        if(cargos.isEmpty()){
+            MessagesHelper.error("Nenhum cargo cadastrado.");
+            return;
+        }else {
+
+            System.out.printf("|| %-5s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
+            for (Cargo cargo : cargos) {
+                System.out.printf("|| %-5d || %-20s || %-50s ||\n", cargo.getId(), cargo.getNome(), cargo.getDescricao());
+            }
         }
     }
 
