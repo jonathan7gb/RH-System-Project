@@ -13,7 +13,7 @@ import java.util.List;
 public class CargoDAO {
 
     public static void cadastrarCargo(Cargo cargo) throws SQLException{
-        String comando = "INSERT INTO cargo (nome, descricao) VALUES (?, ?)";
+        String comando = "INSERT INTO Cargo (nome, descricao) VALUES (?, ?)";
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
             stmt.setString(1, cargo.getNome());
@@ -23,7 +23,7 @@ public class CargoDAO {
     }
 
     public static void editarCargo(Cargo cargo) throws SQLException{
-        String comando = "UPDATE cargo SET nome = ?, descricao = ? WHERE id = ?";
+        String comando = "UPDATE Cargo SET nome = ?, descricao = ? WHERE id = ?";
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
             stmt.setString(1, cargo.getNome());
