@@ -10,7 +10,7 @@ public class CargoView {
     static Scanner input = new Scanner(System.in);
 
     public static int menuCargo(){
-        System.out.println("\n|| ------- Cargo ------- ||");
+        System.out.println("\n|| ---------- Cargo ---------- ||");
         System.out.println("|| 1 - Cadastrar Cargo");
         System.out.println("|| 2 - Editar Cargo");
         System.out.println("|| 3 - Listar Cargos");
@@ -22,10 +22,10 @@ public class CargoView {
     }
 
     public static Cargo cadastrarCargo(){
-        System.out.println("\n|| ------- Cadastrar Cargo ------- ||");
+        System.out.println("\n|| ---------- Cadastrar Cargo ---------- ||");
 
-        String nome = InputHelper.inputString("Nome do Cargo: ", input);
-        String descricao = InputHelper.inputString("Descrição do Cargo: ", input);
+        String nome = InputHelper.inputString("|| Nome do Cargo: ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Cargo: ", input);
 
         Cargo cargo = null;
 
@@ -36,10 +36,10 @@ public class CargoView {
     }
 
     public static Cargo editarCargo(Cargo cargo){
-        System.out.println("\n|| ------- Editar Cargo ------- ||");
+        System.out.println("\n|| ---------- Editar Cargo ---------- ||");
 
-        String nome = InputHelper.inputString("Nome do Cargo (" + cargo.getNome() + ") (Enter para manter): ", input);
-        String descricao = InputHelper.inputString("Descrição do Cargo (Enter para manter): ", input);
+        String nome = InputHelper.inputString("|| Nome do Cargo (" + cargo.getNome() + ") (Enter para manter): ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Cargo (Enter para manter): ", input);
 
         if(!nome.isBlank()){
             cargo.setNome(nome);
@@ -52,7 +52,7 @@ public class CargoView {
     }
 
     public static void listarCargos(List<Cargo> cargos){
-        System.out.println("\n|| ------- Listar Cargos ------- ||\n");
+        System.out.println("\n|| ---------- Listar Cargos ---------- ||\n");
 
         if(cargos.isEmpty()){
             MessagesHelper.error("Nenhum cargo cadastrado.");
@@ -67,7 +67,7 @@ public class CargoView {
     }
 
     public static int buscarCargo(){
-        System.out.println("\n|| ------- Buscar Cargo ------- ||");
+        System.out.println("\n|| ---------- Buscar Cargo ---------- ||");
 
         int id = InputHelper.inputInteger("ID do Cargo: ", input);
         return id;
