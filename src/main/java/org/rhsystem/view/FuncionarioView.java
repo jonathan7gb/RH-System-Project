@@ -51,24 +51,24 @@ public class FuncionarioView {
 
     // TROCAR DE SENHA
     public static void trocarSenha() {
-        System.out.println("\n\n----- Trocar de Senha -----\n\n");
+        System.out.println("\n----- Trocar de Senha -----\n");
 
         String senhaAtual = InputHelper.inputString("Insira a senha atual", input);
         String novaSenha = InputHelper.inputString("Insira a nova senha", input);
         String confirmacaoNovaSenha = InputHelper.inputString("Confirme a nova senha:", input);
 
         if (novaSenha.length() < 8) {
-            System.out.println("❌ A senha deve ter no mínimo 8 caracteres!");
+            MessagesHelper.error("❌ A senha deve ter no mínimo 8 caracteres!");
             return;
         }
 
         if (!novaSenha.matches(".*[0-9].*")) {
-            System.out.println("❌ A senha deve conter pelo menos 1 número!");
+            MessagesHelper.error("❌ A senha deve conter pelo menos 1 número!");
             return;
         }
 
         if (!novaSenha.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
-            System.out.println("❌ A senha deve conter pelo menos 1 caractere especial!");
+            MessagesHelper.error("❌ A senha deve conter pelo menos 1 caractere especial!");
             return;
         }
     }
