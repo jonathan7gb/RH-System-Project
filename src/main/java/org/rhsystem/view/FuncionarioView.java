@@ -57,6 +57,20 @@ public class FuncionarioView {
         String novaSenha = InputHelper.inputString("Insira a nova senha", input);
         String confirmacaoNovaSenha = InputHelper.inputString("Confirme a nova senha:", input);
 
+        if (novaSenha.length() < 8) {
+            System.out.println("❌ A senha deve ter no mínimo 8 caracteres!");
+            return;
+        }
+
+        if (!novaSenha.matches(".*[0-9].*")) {
+            System.out.println("❌ A senha deve conter pelo menos 1 número!");
+            return;
+        }
+
+        if (!novaSenha.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+            System.out.println("❌ A senha deve conter pelo menos 1 caractere especial!");
+            return;
+        }
     }
 }
 
