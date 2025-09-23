@@ -10,23 +10,22 @@ public class DepartamentoView {
     static Scanner input = new Scanner(System.in);
 
     public static int menuDepartamento(){
-        System.out.print("\n|| ------- Departamento ------- ||");
-
-        System.out.println("1 - Cadastrar Departamento");
-        System.out.println("2 - Editar Departamento");
-        System.out.println("3 - Listar Departamentos");
-        System.out.println("4 - Buscar Departamento");
-        System.out.println("0 - Voltar ao Menu Principal");
+        System.out.println("\n|| ------- Departamento ------- ||");
+        System.out.println("|| 1 - Cadastrar Departamento");
+        System.out.println("|| 2 - Editar Departamento");
+        System.out.println("|| 3 - Listar Departamentos");
+        System.out.println("|| 4 - Buscar Departamento");
+        System.out.println("|| 0 - Voltar ao Menu Principal");
         int opcao = InputHelper.inputInteger("Escolha uma opção: ", input);
 
         return opcao;
     }
 
     public static Departamento cadastrarDepartamento(){
-        System.out.print("\n|| ------- Cadastrar Departamento ------- ||");
+        System.out.println("\n|| ------- Cadastrar Departamento ------- ||");
 
-        String nome = InputHelper.inputString("Nome do Departamento: ", input);
-        String descricao = InputHelper.inputString("Descrição do Departamento: ", input);
+        String nome = InputHelper.inputString("|| Nome do Departamento: ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Departamento: ", input);
         Departamento departamento = null;
 
         if(!nome.isBlank() && !descricao.isBlank()){
@@ -36,10 +35,10 @@ public class DepartamentoView {
     }
 
     public static Departamento editarDepartamento(Departamento departamento){
-        System.out.print("\n|| ------- Editar Departamento ------- ||");
+        System.out.println("\n|| ------- Editar Departamento ------- ||");
 
-        String nome = InputHelper.inputString("Nome do Departamento (" + departamento.getNome() + ") (Enter para manter): ", input);
-        String descricao = InputHelper.inputString("Descrição do Departamento (Enter para manter): ", input);
+        String nome = InputHelper.inputString("|| Nome do Departamento (" + departamento.getNome() + ") (Enter para manter): ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Departamento (Enter para manter): ", input);
 
         if(!nome.isBlank()){
             departamento.setNome(nome);
@@ -52,7 +51,7 @@ public class DepartamentoView {
     }
 
     public static void listarDepartamentos(List<Departamento> departamentos){
-        System.out.print("\n|| ------- Listar Departamentos ------- ||\n");
+        System.out.println("\n|| ------- Listar Departamentos ------- ||\n");
 
         if(departamentos.isEmpty()){
             MessagesHelper.error("Nenhum departamento cadastrado.");
@@ -66,7 +65,7 @@ public class DepartamentoView {
     }
 
     public static int buscarDepartamento(){
-        System.out.print("\n|| ------- Buscar Departamento ------- ||");
+        System.out.println("\n|| ------- Buscar Departamento ------- ||");
 
         int id = InputHelper.inputInteger("ID do Departamento: ", input);
         return id;
