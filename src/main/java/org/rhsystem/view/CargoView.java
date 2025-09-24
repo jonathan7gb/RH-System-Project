@@ -16,9 +16,7 @@ public class CargoView {
         System.out.println("|| 3 - Listar Cargos");
         System.out.println("|| 4 - Buscar Cargo");
         System.out.println("|| 0 - Voltar ao Menu Principal");
-        int opcao = InputHelper.inputInteger("Escolha uma opção: ", input);
-
-        return opcao;
+        return InputHelper.inputInteger("Escolha uma opção: ", input);
     }
 
     public static Cargo cadastrarCargo(){
@@ -69,7 +67,6 @@ public class CargoView {
     public static int buscarCargo(){
         System.out.println("\n|| ---------- Buscar Cargo ---------- ||");
 
-        int id = InputHelper.inputInteger("ID do Cargo: ", input);
-        return id;
+        return InputHelper.inputInteger("ID do Cargo: ", input);
     }
 }
