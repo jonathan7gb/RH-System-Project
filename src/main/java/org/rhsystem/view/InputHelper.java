@@ -49,8 +49,7 @@ public class InputHelper {
     //MÉTODO PARA E VALIDAR LER STRINGS
     public static String inputString(String mensagem, Scanner sc){
         System.out.print(mensagem);
-        String leitura = sc.nextLine();
-        return leitura;
+        return sc.nextLine();
     }
 
     //=============================================================================
