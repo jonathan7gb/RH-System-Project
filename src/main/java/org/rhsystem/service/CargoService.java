@@ -6,6 +6,8 @@ import org.rhsystem.view.CargoView;
 import org.rhsystem.view.MessagesHelper;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CargoService {
 
@@ -51,12 +53,10 @@ public class CargoService {
     public static void buscarCargo(){
         try{
             int id = CargoView.buscarCargo();
+            List<Cargo> cargos = new ArrayList<>();
             Cargo cargo = CargoDAO.buscarCargoPorId(id);
-            if(cargo != null){
-                System.out.println(cargo);
-            }else{
-                MessagesHelper.error("Cargo não encontrado.");
-            }
+            cargos.add(cargo);
+            CargoView.listarCargos(cargos);
         }catch (SQLException e){
             MessagesHelper.error(e.getMessage());
         }
