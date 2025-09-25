@@ -1,76 +1,72 @@
 package org.rhsystem.view;
 
+import org.rhsystem.model.Usuario;
+
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FuncionarioView {
     static Scanner input = new Scanner(System.in);
 
     // MENU FUNCIONARIO
-    public static void menuFuncionario() {
-        System.out.print("\n\n----- Funcionário -----\n\n");
+    public static int menuFuncionario() {
+        System.out.println("\n|| ----- Funcionário ----- ||");
 
-        System.out.println("1- Visualizar Informações");
-        System.out.println("2- Visualizar Colegas de Departamento");
-        System.out.println("3- Trocar Senha");
-        System.out.println("0- Sair do Sistema");
-        int opcao = InputHelper.inputInteger("Escolha uma opção: ", input);
-
-        switch (opcao) {
-
-            case 1: {
-                break;
-            }
-
-            case 2: {
-                break;
-            }
-
-            case 3: {
-                break;
-            }
-
-            case 4: {
-                System.out.println("Saindo do Sistema...");
-                break;
-            }
-        }
+        System.out.println("|| 1- Visualizar Informações");
+        System.out.println("|| 2- Visualizar Colegas de Departamento");
+        System.out.println("|| 3- Trocar Senha");
+        System.out.println("|| 0- Sair do Sistema");
+        return InputHelper.inputInteger("|| Escolha uma opção: ", input);
     }
 
 
     // VISUALIZAR INFORMAÇÕES
-    public static void visualizarInformacoes() {
-        System.out.println("\n\n----- Visualizar Informações -----\n\n");
+    public static void visualizarInformacoes(Usuario usuario) {
+        System.out.println("\n|| ----- Visualizar Informações ----- ||");
 
-        System.out.println("Nome: ");
-        System.out.println("CPF: ");
-        System.out.println("Data de Nascimento: ");
-        System.out.println("Cargo: ");
-        System.out.println("Salário: ");
+        System.out.println("|| Nome: "+ usuario.getNomeCompleto());
+        System.out.println("|| CPF: "+ usuario.getCPF());
+        System.out.println("|| Data de Nascimento: "+ usuario.getDataNascimento());
+        System.out.println("|| Cargo: "+ usuario.getCargo().getNome());
+        System.out.println("|| Departamento: "+ usuario.getDepartamento().getNome());
+        System.out.println("|| Salário: "+ usuario.getSalario());
     }
 
 
     // TROCAR DE SENHA
-    public static void trocarSenha() {
-        System.out.println("\n----- Trocar de Senha -----\n");
+    public static String inserirSenhaAtual() {
+        System.out.println("\n|| ----- Trocar de Senha ----- ||");
 
-        String senhaAtual = InputHelper.inputString("Insira a senha atual", input);
-        String novaSenha = InputHelper.inputString("Insira a nova senha", input);
-        String confirmacaoNovaSenha = InputHelper.inputString("Confirme a nova senha:", input);
+        return InputHelper.inputString("|| Insira a senha atual", input);
+    }
+
+
+    public static String inserirSenhaNova() {
+        String novaSenha = InputHelper.inputString("|| Insira a nova senha", input);
 
         if (novaSenha.length() < 8) {
-            MessagesHelper.error("❌ A senha deve ter no mínimo 8 caracteres!");
-            return;
+            MessagesHelper.error("A senha deve ter no mínimo 8 caracteres!");
+            return null;
         }
 
         if (!novaSenha.matches(".*[0-9].*")) {
-            MessagesHelper.error("❌ A senha deve conter pelo menos 1 número!");
-            return;
+            MessagesHelper.error("A senha deve ter pelo menos 1 número!");
+            return null;
         }
 
         if (!novaSenha.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
-            MessagesHelper.error("❌ A senha deve conter pelo menos 1 caractere especial!");
-            return;
+            MessagesHelper.error("A senha deve ter pelo menos 1 caractere especial!");
+            return null;
         }
+        String confirmacaoNovaSenha = InputHelper.inputString("|| Confirme a nova senha:", input);
+
+        if(Objects.equals(confirmacaoNovaSenha, novaSenha)) {
+            return confirmacaoNovaSenha;
+
+        }else {
+            return null;
+        }
+
     }
 }
 
