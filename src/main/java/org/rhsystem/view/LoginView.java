@@ -2,14 +2,16 @@ package org.rhsystem.view;
 
 import java.util.Scanner;
 
-import org.rhsystem.model.Login;
-
 public class LoginView {
 
     static Scanner input = new Scanner(System.in);
 
-    public static int interfaceLogin(){
+    public static String interfaceLoginEmail(){
         System.out.println("\n|| ------- Login ------- ||");
-        System.out.println("")
+        return InputHelper.inputString("insira seu EMAIL: ", input);
+    }
+
+    public static String interfaceLoginPassword(){
+        return InputHelper.inputString("insira seu SENHA: ", input);
     }
 }

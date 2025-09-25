@@ -1,8 +1,40 @@
 package org.rhsystem.controller;
 
+import org.rhsystem.dao.LoginDAO;
+import org.rhsystem.model.Usuario;
+import org.rhsystem.model.enums.TipoUsuario;
+import org.rhsystem.view.LoginView;
+import org.rhsystem.view.MessagesHelper;
+
+import java.sql.SQLException;
+
 public class MenuPrincipalController {
 
-    public void menuPrincipalController(){
+    public static void menuPrincipalController(){
 
+        Usuario usuario = null;
+
+       do {
+           String email = LoginView.interfaceLoginEmail();
+           String senha = LoginView.interfaceLoginPassword();
+
+           try {
+               usuario = LoginDAO.checarUsuario(email, senha);
+           } catch (SQLException e) {
+               MessagesHelper.error(e.getMessage());
+           }
+           if(usuario == null){
+               MessagesHelper.error("Usuário ou Senha Incorretos");
+           }else{
+               if (usuario.getTipoUsuario() == TipoUsuario.ADMIN){
+                   System.out.println("Deu certo");
+               } else if (usuario.getTipoUsuario() == TipoUsuario.FUNCIONARIO){
+                   FuncionarioController.funcionarioController(usuario);
+               } else {
+                   MessagesHelper.error("Erro ao encontrar usuário");
+               }
+           }
+
+       } while (true);
     }
 }
