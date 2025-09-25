@@ -1,7 +1,7 @@
 package org.rhsystem.dao;
 
 import org.rhsystem.model.Departamento;
-import org.rhsystem.repository.DatabaseConnection;
+import org.rhsystem.DBConnection.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

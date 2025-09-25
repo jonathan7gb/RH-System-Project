@@ -1,4 +1,4 @@
-package org.rhsystem.repository;
+package org.rhsystem.DBConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
