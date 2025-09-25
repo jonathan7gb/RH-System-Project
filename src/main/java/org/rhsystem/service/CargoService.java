@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CargoService {
 
-
     public static void registrarCargo() {
        try{
            Cargo cargo = CargoView.cadastrarCargo();
