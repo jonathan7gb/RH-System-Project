@@ -8,10 +8,10 @@ public class LoginView {
 
     public static String interfaceLoginEmail(){
         System.out.println("\n|| ------- Login ------- ||");
-        return InputHelper.inputString("insira seu EMAIL: ", input);
+        return InputHelper.inputString("|| Insira seu E-MAIL: ", input);
     }
 
     public static String interfaceLoginPassword(){
-        return InputHelper.inputString("insira seu SENHA: ", input);
+        return InputHelper.inputString("|| Insira sua SENHA: ", input);
     }
 }
