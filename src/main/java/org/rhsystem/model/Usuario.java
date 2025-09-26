@@ -14,11 +14,10 @@ public class Usuario {
     private Departamento departamento;
     private double salario;
     private LocalDate dataAdmissao;
-    private LocalDate dataSaida;
     private TipoUsuario tipoUsuario;
     private String senha;
 
-    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, LocalDate dataSaida, TipoUsuario tipoUsuario, String senha) {
+    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, String senha) {
         this.id = id;
         this.CPF = CPF;
         this.nomeCompleto = nomeCompleto;
@@ -28,7 +27,6 @@ public class Usuario {
         this.departamento = departamento;
         this.salario = salario;
         this.dataAdmissao = dataAdmissao;
-        this.dataSaida = dataSaida;
         this.tipoUsuario = tipoUsuario;
         this.senha = senha;
     }
@@ -114,14 +112,6 @@ public class Usuario {
 
     public void setDataAdmissao(LocalDate dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
-    }
-
-    public LocalDate getDataSaida() {
-        return dataSaida;
-    }
-
-    public void setDataSaida(LocalDate dataSaida) {
-        this.dataSaida = dataSaida;
     }
 
     public TipoUsuario getTipoUsuario() {
