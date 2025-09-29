@@ -1,4 +1,5 @@
 package org.rhsystem.model;
+import org.rhsystem.model.enums.StatusUsuario;
 import org.rhsystem.model.enums.TipoUsuario;
 
 import java.time.LocalDate;
@@ -15,9 +16,10 @@ public class Usuario {
     private double salario;
     private LocalDate dataAdmissao;
     private TipoUsuario tipoUsuario;
+    private StatusUsuario status;
     private String senha;
 
-    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, String senha) {
+    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, StatusUsuario status, String senha) {
         this.id = id;
         this.CPF = CPF;
         this.nomeCompleto = nomeCompleto;
@@ -28,19 +30,25 @@ public class Usuario {
         this.salario = salario;
         this.dataAdmissao = dataAdmissao;
         this.tipoUsuario = tipoUsuario;
+        this.status = status;
         this.senha = senha;
     }
 
-    public Usuario(String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, double salario, Departamento departamento, String senha) {
+    public Usuario(String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, String senha) {
         this.CPF = CPF;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.cargo = cargo;
-        this.salario = salario;
         this.departamento = departamento;
+        this.salario = salario;
+        this.dataAdmissao = dataAdmissao;
+        this.tipoUsuario = tipoUsuario;
+        this.status = StatusUsuario.ATIVO;
         this.senha = senha;
     }
+
+
 
     public int getId() {
         return id;
@@ -122,6 +130,10 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public StatusUsuario getStatus() { return status;}
+
+    public void setStatus (StatusUsuario status){ this.status = status; }
+
     public String getSenha() {
         return senha;
     }
@@ -132,6 +144,6 @@ public class Usuario {
 
     @Override
     public String toString(){
-        return "|| " + nomeCompleto + " || " + CPF + "|| " + dataNascimento + "\n|| " + email + " || " + departamento.getNome() + "\n|| " + cargo.getNome() + " || " + salario + " ||";
+        return "|| " + nomeCompleto + " || " + CPF + "|| " + dataNascimento + "\n|| " + email + " ||" + cargo.getNome() + " || " + departamento.getNome() + "|| " + salario + " ||";
     }
 }
