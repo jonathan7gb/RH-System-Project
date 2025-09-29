@@ -19,7 +19,7 @@ public class DatabaseConnection {
             System.out.println("Conectado");
             conn.close();
         } catch (SQLException e) {
-            System.out.println("Nn conectou: " + e.getMessage());
+            System.out.println("Falha na conexão: " + e.getMessage());
         }
     }
 }

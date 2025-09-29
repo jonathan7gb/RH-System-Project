@@ -6,6 +6,11 @@ public enum TipoUsuario {
 
     private final String descricao;
 
+
+    public String getDescricao() {
+        return descricao;
+    }
+
     TipoUsuario(String descricao) {
         this.descricao = descricao;
     }
