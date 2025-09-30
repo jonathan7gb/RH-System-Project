@@ -31,7 +31,6 @@ public class RHService {
 
     public static void editarUsuario(){
             try{
-                // Busca o usuário para editar
                 int id = RHView.buscarUsuario();
                 Usuario usuarioExistente = RHDAO.buscarUsuarioPorId(id);
 
@@ -40,26 +39,24 @@ public class RHService {
                     return;
                 }
 
-                // Verifica se o usuário já está inativo
-                if (usuarioExistente.getStatus() == StatusUsuario.INATIVO) {
+                if (usuarioExistente.getStatusUsuario() == StatusUsuario.INATIVO) {
                     MessagesHelper.error("Não é possível editar usuário inativo. Use a opção de reativar se necessário.");
                     return;
                 }
 
-                // Guarda o status original
-                StatusUsuario statusOriginal = usuarioExistente.getStatus();
 
-                // Chama a view para editar
+                StatusUsuario statusOriginal = usuarioExistente.getStatusUsuario();
+
+
                 Usuario usuarioEditado = RHView.editarUsuario(usuarioExistente);
 
                 if (usuarioEditado != null) {
-                    // Verifica se tentou inativar via edição
-                    if (usuarioEditado.getStatus() == StatusUsuario.INATIVO && statusOriginal == StatusUsuario.ATIVO) {
+
+                    if (usuarioEditado.getStatusUsuario() == StatusUsuario.INATIVO && statusOriginal == StatusUsuario.ATIVO) {
                         MessagesHelper.error("Para inativar um usuário, use a opção específica de inativação.");
                         return;
                     }
 
-                    // Salva apenas edições normais
                     RHDAO.editarUsuario(usuarioEditado);
                     MessagesHelper.success("Usuário editado com sucesso!");
 
@@ -81,7 +78,7 @@ public class RHService {
                 MessagesHelper.error("Usuário não encontrado.");
                 return;
             }
-            if (usuarioExistente.getStatus() == StatusUsuario.INATIVO) {
+            if (usuarioExistente.getStatusUsuario() == StatusUsuario.INATIVO) {
                 MessagesHelper.error("Usuário já está inativo.");
                 return;
             }
@@ -89,7 +86,7 @@ public class RHService {
             HistoricoSaida historico = RHView.inativarUsuario(usuarioExistente);
 
             if (historico != null) {
-                usuarioExistente.setStatus(StatusUsuario.INATIVO);
+                usuarioExistente.setStatusUsuario(StatusUsuario.INATIVO);
                 RHDAO.editarUsuario(usuarioExistente);
 
                 // Delega para o service específico

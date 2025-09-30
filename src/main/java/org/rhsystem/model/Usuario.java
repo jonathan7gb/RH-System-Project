@@ -16,10 +16,10 @@ public class Usuario {
     private double salario;
     private LocalDate dataAdmissao;
     private TipoUsuario tipoUsuario;
-    private StatusUsuario status;
+    private StatusUsuario statusUsuario;
     private String senha;
 
-    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, StatusUsuario status, String senha) {
+    public Usuario(int id, String CPF, String nomeCompleto, String email, LocalDate dataNascimento, Cargo cargo, Departamento departamento, double salario, LocalDate dataAdmissao, TipoUsuario tipoUsuario, StatusUsuario statusUsuario, String senha) {
         this.id = id;
         this.CPF = CPF;
         this.nomeCompleto = nomeCompleto;
@@ -30,7 +30,7 @@ public class Usuario {
         this.salario = salario;
         this.dataAdmissao = dataAdmissao;
         this.tipoUsuario = tipoUsuario;
-        this.status = status;
+        this.statusUsuario = statusUsuario;
         this.senha = senha;
     }
 
@@ -44,7 +44,7 @@ public class Usuario {
         this.salario = salario;
         this.dataAdmissao = dataAdmissao;
         this.tipoUsuario = tipoUsuario;
-        this.status = StatusUsuario.ATIVO;
+        this.statusUsuario = StatusUsuario.ATIVO;
         this.senha = senha;
     }
 
@@ -130,9 +130,9 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public StatusUsuario getStatus() { return status;}
+    public StatusUsuario getStatusUsuario() { return statusUsuario;}
 
-    public void setStatus (StatusUsuario status){ this.status = status; }
+    public void setStatusUsuario (StatusUsuario statusUsuario){ this.statusUsuario = statusUsuario; }
 
     public String getSenha() {
         return senha;
