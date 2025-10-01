@@ -18,7 +18,9 @@ public class RHDAO {
 
     //'comando' para modificação no banco, 'query' para consultas
     public static void cadastrarUsuario(Usuario usuario) throws SQLException{
-        String comando = "INSERT INTO usuario (CPF, nomeCompleto, email, data_nascimento, id_cargo, id_departamento, salario, data_admissao, tipoUsuario, status, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String comando = "INSERT INTO usuario (CPF, nomeCompleto, email, dataNascimento, id_cargo, id_departamento, salario, dataAdmissao, tipoUsuario, statusUsuario, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
             stmt.setString(1, usuario.getCPF());
@@ -30,14 +32,18 @@ public class RHDAO {
             stmt.setDouble(7, usuario.getSalario());
             stmt.setDate(8, java.sql.Date.valueOf(usuario.getDataAdmissao()));
             stmt.setString(9, usuario.getTipoUsuario().name());
-            stmt.setString(10, usuario.getStatus().name());
+
+            stmt.setString(10, usuario.getStatusUsuario().name());
+
             stmt.setString(11, usuario.getSenha());
             stmt.executeUpdate();
         }
     }
 
     public static void editarUsuario(Usuario usuario) throws SQLException {
-        String comando = "UPDATE usuario SET CPF = ?, nomeCompleto = ?, email = ?, data_nascimento = ?, id_cargo = ?, id_departamento = ?, salario = ?, data_admissao = ?, tipoUsuario = ?, status = ?, senha = ? WHERE id = ?";
+
+        String comando = "UPDATE usuario SET CPF = ?, nomeCompleto = ?, email = ?, dataNascimento = ?, id_cargo = ?, id_departamento = ?, salario = ?, dataAdmissao = ?, tipoUsuario = ?, statusUsuario = ?, senha = ? WHERE id = ?";
+
 
         try(Connection conn = DatabaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -51,7 +57,9 @@ public class RHDAO {
             stmt.setDouble(7, usuario.getSalario());
             stmt.setDate(8, java.sql.Date.valueOf(usuario.getDataAdmissao()));
             stmt.setString(9, usuario.getTipoUsuario().name());
-            stmt.setString(10, usuario.getStatus().name());
+
+            stmt.setString(10, usuario.getStatusUsuario().name());
+
             stmt.setString(11, usuario.getSenha());
             stmt.setInt(12, usuario.getId()); // aq seria o WHERE id = ?
 
@@ -60,7 +68,9 @@ public class RHDAO {
     }
 
     public static List<Usuario> listarUsuarios() throws SQLException {
-        String comando = "SELECT * FROM usuario";
+
+        String comando = "SELECT * FROM usuario WHERE statusUsuario = 'Ativo'";
+
         List<Usuario> usuarios = new ArrayList<>();
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -74,13 +84,15 @@ public class RHDAO {
                         rs.getString("CPF"),
                         rs.getString("nomeCompleto"),
                         rs.getString("email"),
-                        rs.getDate("data_nascimento").toLocalDate(),
+
+                        rs.getDate("dataNascimento").toLocalDate(),
                         cargo,
                         departamento,
                         rs.getDouble("salario"),
-                        rs.getDate("data_admissao").toLocalDate(),
+                        rs.getDate("dataAdmissao").toLocalDate(),
                         TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("status")),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
+
                         rs.getString("senha")
                 );
                 usuarios.add(usuario);
@@ -105,13 +117,15 @@ public class RHDAO {
                         rs.getString("CPF"),
                         rs.getString("nomeCompleto"),
                         rs.getString("email"),
-                        rs.getDate("data_nascimento").toLocalDate(),
+
+                        rs.getDate("dataNascimento").toLocalDate(),
                         cargo,
                         departamento,
                         rs.getDouble("salario"),
-                        rs.getDate("data_admissao").toLocalDate(),
+                        rs.getDate("dataAdmissao").toLocalDate(),
                         TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("status")),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
+
                         rs.getString("senha")
                 );
             }

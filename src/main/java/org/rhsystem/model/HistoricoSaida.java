@@ -19,6 +19,7 @@ public class HistoricoSaida {
     }
 
 
+
     public HistoricoSaida(int usuarioId, LocalDate dataSaida, String motivo, String observacoes) {
         this.usuarioId = usuarioId;
         this.dataSaida = dataSaida;
