@@ -1,5 +1,6 @@
 package org.rhsystem.service;
 
+import org.rhsystem.dao.CargoDAO;
 import org.rhsystem.dao.DepartamentoDAO;
 import org.rhsystem.model.Departamento;
 import org.rhsystem.view.DepartamentoView;

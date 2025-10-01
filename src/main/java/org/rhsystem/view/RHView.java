@@ -5,6 +5,8 @@ import org.rhsystem.model.HistoricoSaida;
 import org.rhsystem.model.Usuario;
 import org.rhsystem.model.enums.StatusUsuario;
 import org.rhsystem.model.enums.TipoUsuario;
+import org.rhsystem.model.validations.CpfValidate;
+import org.rhsystem.model.validations.EmailValidate;
 import org.rhsystem.model.validations.SenhaValidate;
 import org.rhsystem.view.HistoricoSaidaView;
 
@@ -24,18 +26,26 @@ public class RHView {
         System.out.println("|| 5 - Buscar usuários");
         System.out.println("|| 6 - Listar usuários inativos");
         System.out.println("|| 0 - Voltar ao Menu Principal");
-        return InputHelper.inputInteger("Selecione uma opção: ", input);
+        return InputHelper.inputInteger("|| Selecione uma opção: ", input);
     }
 
     public static Usuario cadastrarUsuario(){
         System.out.println("\n|| ---------- Cadastrar Usuário ---------- ||");
-        String CPF = InputHelper.inputString("|| CPF do usuário: ", input);
+        String CPF = CpfValidate.cpfValidate();
         String nomeCompleto = InputHelper.inputString("|| Nome do usuário: ", input);
-        String email = InputHelper.inputString("|| Email do usuário: ", input);
+        String email = EmailValidate.emailValidate();
         LocalDate dataNascimento = InputHelper.inputDate("|| Data de nascimento do usuário: ", input);
         Cargo cargo = InputHelper.inputCargo("|| ID do cargo: ", input);
         Departamento departamento = InputHelper.inputDepartamento("|| ID do departamento: ", input);
-        double salario = InputHelper.inputDouble("|| Salario do usuário: ", input);
+        double salario = 0.0;
+        while(true) {
+            salario = InputHelper.inputDouble("|| Salário do usuário: ", input);
+            if(salario < 0.0) {
+                MessagesHelper.info("O salário não pode ser negativo");
+            }else{
+                break;
+            }
+        }
         LocalDate dataAdmissao = InputHelper.inputDate("|| Data de admissao do usuário: ", input);
         TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de Usuario: ", input);
         String senha = SenhaValidate.validarSenha("|| Digite a Senha: ");
@@ -52,7 +62,15 @@ public class RHView {
         LocalDate dataNascimento = InputHelper.inputDateOptional("|| Data de nascimento do usuário (" + usuarioExistente.getDataNascimento() + ") (Enter para manter): ", usuarioExistente.getDataNascimento(), input);
         Cargo cargo = InputHelper.inputCargo("|| Cargo do usuário (" + usuarioExistente.getCargo() + "): ", input);
         Departamento departamento = InputHelper.inputDepartamento("|| Departamento do usuário (" + usuarioExistente.getDepartamento() + ") : ", input);
-        double salario = InputHelper.inputDouble("|| Salário do usuário (" + usuarioExistente.getSalario() + "): ", input);
+        double salario = 0.0;
+        while(true) {
+            salario = InputHelper.inputDouble("|| Salário do usuário (" + usuarioExistente.getSalario() + "): ", input);
+            if(salario < 0.0) {
+                MessagesHelper.info("O salário não pode ser negativo");
+            }else{
+                break;
+            }
+        }
         LocalDate dataAdmissao = InputHelper.inputDateOptional("|| Data de admissão do usuário (" + usuarioExistente.getDataAdmissao() + ") (Enter para manter): ", usuarioExistente.getDataAdmissao(), input);
         TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de usuário (" + usuarioExistente.getTipoUsuario() + "): ", input);
         String senha = null;

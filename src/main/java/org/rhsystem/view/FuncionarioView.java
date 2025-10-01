@@ -22,12 +22,12 @@ public class FuncionarioView {
     }
 
     // VISUALIZAR COLEGAS DE DEPARTAMENTO
-    public static void visualizarColegasDepartamento(List<Usuario> colegasDepartamento) {
-        System.out.println("\n|| ----- Colegas de Departamento ----- ||");
+    public static void visualizarColegasDepartamento(List<Usuario> colegasDepartamento, String departamento) {
+        System.out.println("\n|| -----  "+departamento+"  ----- ||");
 
-        System.out.printf("|| %-20s || %-50s ||\n", "NOME", "CARGO");
+        System.out.printf("|| %-20s || %-30s ||\n", "NOME", "CARGO");
         for (Usuario u : colegasDepartamento) {
-            System.out.printf("|| %-20s || %-50s ||\n", u.getNomeCompleto(), u.getCargo().getNome());
+            System.out.printf("|| %-20s || %-30s ||\n", u.getNomeCompleto(), u.getCargo().getNome());
         }
     }
 

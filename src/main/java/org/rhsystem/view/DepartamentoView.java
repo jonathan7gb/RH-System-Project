@@ -45,6 +45,11 @@ public class DepartamentoView {
             departamento.setDescricao(descricao);
         }
 
+        if(descricao.isEmpty() && nome.isEmpty()){
+            System.out.println();
+            MessagesHelper.info("A edição será confirmada, porém você manteu tudo como estava!");
+        }
+
         return departamento;
     }
 

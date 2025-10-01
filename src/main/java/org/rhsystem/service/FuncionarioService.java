@@ -18,7 +18,7 @@ public class FuncionarioService {
                 System.out.println();
                 MessagesHelper.info("Nenhum Colega de Departamento encontrado!");
             }else{
-                FuncionarioView.visualizarColegasDepartamento(colegas);
+                FuncionarioView.visualizarColegasDepartamento(colegas, usuario.getDepartamento().getNome());
             }
         }catch (SQLException e){
             MessagesHelper.error("Erro ao visualizar colegas de departamento: " + e.getMessage());
