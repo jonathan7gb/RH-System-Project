@@ -6,7 +6,7 @@ import org.rhsystem.controller.RHController;
 
 public class Main {
     public static void main(String[] args) {
-    //  MenuPrincipalController.menuPrincipalController();
+    //MenuPrincipalController.menuPrincipalController();
 
       RHController.rhController();
     }

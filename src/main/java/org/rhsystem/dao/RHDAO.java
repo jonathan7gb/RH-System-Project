@@ -60,7 +60,7 @@ public class RHDAO {
     }
 
     public static List<Usuario> listarUsuarios() throws SQLException {
-        String comando = "SELECT * FROM usuario";
+        String comando = "SELECT * FROM usuario WHERE statusUsuario = 'Ativo'";
         List<Usuario> usuarios = new ArrayList<>();
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -80,7 +80,7 @@ public class RHDAO {
                         rs.getDouble("salario"),
                         rs.getDate("dataAdmissao").toLocalDate(),
                         TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("status")),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
                         rs.getString("senha")
                 );
                 usuarios.add(usuario);
@@ -111,7 +111,7 @@ public class RHDAO {
                         rs.getDouble("salario"),
                         rs.getDate("dataAdmissao").toLocalDate(),
                         TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("status")),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
                         rs.getString("senha")
                 );
             }
