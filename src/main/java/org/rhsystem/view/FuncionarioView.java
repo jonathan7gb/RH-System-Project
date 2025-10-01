@@ -27,7 +27,7 @@ public class FuncionarioView {
 
         System.out.printf("|| %-3s || %-20s || %-50s ||\n", "ID", "NOME", "CARGO");
         for (Usuario u : colegasDepartamento) {
-            System.out.printf("|| %-3d || %-20s || %-50s ||\n", u.getId(), u.getNomeCompleto(), u.getCargo().getDescricao());
+            System.out.printf("|| %-3d || %-20s || %-50s ||\n", u.getId(), u.getNomeCompleto(), u.getCargo().getNome());
         }
     }
 
