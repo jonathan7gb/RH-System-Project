@@ -15,7 +15,8 @@ public class FuncionarioService {
         try{
             List<Usuario> colegas = FuncionarioDAO.visualizarColegasDepartamento(usuario.getDepartamento().getId());
             if(!colegas.isEmpty()){
-                MessagesHelper.error("Nenhum Colega de Departamento encontrado!");
+                System.out.println();
+                MessagesHelper.info("Nenhum Colega de Departamento encontrado!");
             }else{
                 FuncionarioView.visualizarColegasDepartamento(colegas);
             }

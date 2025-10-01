@@ -5,6 +5,7 @@ import org.rhsystem.model.HistoricoSaida;
 import org.rhsystem.model.Usuario;
 import org.rhsystem.model.enums.StatusUsuario;
 import org.rhsystem.model.enums.TipoUsuario;
+import org.rhsystem.model.validations.SenhaValidate;
 import org.rhsystem.view.HistoricoSaidaView;
 
 import java.time.LocalDate;
@@ -37,7 +38,7 @@ public class RHView {
         double salario = InputHelper.inputDouble("|| Salario do usuário: ", input);
         LocalDate dataAdmissao = InputHelper.inputDate("|| Data de admissao do usuário: ", input);
         TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de Usuario: ", input);
-        String senha = InputHelper.inputString("|| Senha do usuário: ", input);
+        String senha = SenhaValidate.validarSenha("|| Digite a Senha: ");
         Usuario usuario = new Usuario(0,CPF, nomeCompleto, email, dataNascimento, cargo, departamento, salario, dataAdmissao, tipoUsuario, StatusUsuario.ATIVO, senha);
 
         return usuario;
@@ -54,7 +55,7 @@ public class RHView {
         double salario = InputHelper.inputDouble("|| Salário do usuário (" + usuarioExistente.getSalario() + "): ", input);
         LocalDate dataAdmissao = InputHelper.inputDateOptional("|| Data de admissão do usuário (" + usuarioExistente.getDataAdmissao() + ") (Enter para manter): ", usuarioExistente.getDataAdmissao(), input);
         TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de usuário (" + usuarioExistente.getTipoUsuario() + "): ", input);
-        String senha = InputHelper.inputString("|| Senha do usuário (" + usuarioExistente.getSenha() + ") (Enter para manter): ", input);
+        String senha = InputHelper.inputString("|| Senha do usuário (Enter para manter): ", input);
 
 
         if(!CPF.isBlank()){

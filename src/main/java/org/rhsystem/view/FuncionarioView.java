@@ -40,7 +40,7 @@ public class FuncionarioView {
         System.out.println("|| Data de Nascimento: "+ usuario.getDataNascimento());
         System.out.println("|| Cargo: "+ usuario.getCargo().getNome());
         System.out.println("|| Departamento: "+ usuario.getDepartamento().getNome());
-        System.out.println("|| Salário: "+ usuario.getSalario());
+        System.out.println("|| Salário: R$"+ usuario.getSalario());
     }
 
 
@@ -48,12 +48,12 @@ public class FuncionarioView {
     public static String inserirSenhaAtual() {
         System.out.println("\n|| ----- Trocar de Senha ----- ||");
 
-        return InputHelper.inputString("|| Insira a senha atual", input);
+        return InputHelper.inputString("|| Insira a senha atual: ", input);
     }
 
 
     public static String inserirSenhaNova() {
-        String novaSenha = InputHelper.inputString("|| Insira a nova senha", input);
+        String novaSenha = InputHelper.inputString("|| Insira a nova senha: ", input);
 
         if (novaSenha.length() < 8) {
             MessagesHelper.error("A senha deve ter no mínimo 8 caracteres!");
@@ -69,11 +69,10 @@ public class FuncionarioView {
             MessagesHelper.error("A senha deve ter pelo menos 1 caractere especial!");
             return null;
         }
-        String confirmacaoNovaSenha = InputHelper.inputString("|| Confirme a nova senha:", input);
+        String confirmacaoNovaSenha = InputHelper.inputString("|| Confirme a nova senha: ", input);
 
         if(Objects.equals(confirmacaoNovaSenha, novaSenha)) {
             return confirmacaoNovaSenha;
-
         }else {
             return null;
         }
