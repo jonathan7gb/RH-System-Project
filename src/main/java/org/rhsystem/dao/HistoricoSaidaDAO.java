@@ -14,6 +14,7 @@ import java.util.List;
 public class HistoricoSaidaDAO {
 
     public static void salvarHistorico(HistoricoSaida historico) throws SQLException {
+
         String comando = "INSERT INTO historicoSaida (id_usuario, dataSaida, motivo, observacoes) VALUES (?, ?, ?, ?)";
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -26,7 +27,10 @@ public class HistoricoSaidaDAO {
     }
 
     public static List<HistoricoSaida> listarUsuariosInativos() throws SQLException {
+
         String comando = "SELECT * FROM historicoSaida ORDER BY dataSaida DESC";
+      
+
         List<HistoricoSaida> historicoSaidas = new ArrayList<>();
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -34,8 +38,10 @@ public class HistoricoSaidaDAO {
             while(rs.next()){
                 HistoricoSaida historico = new HistoricoSaida(
                         rs.getInt("id"),
+
                         rs.getInt("id_usuario"),
                         rs.getDate("dataSaida").toLocalDate(),
+
                         rs.getString("motivo"),
                         rs.getString("observacoes")
                 );
@@ -46,7 +52,9 @@ public class HistoricoSaidaDAO {
     }
 
     public static HistoricoSaida buscarHistoricoPorId(int id) throws SQLException {
+
         String comando = "SELECT * FROM historicoSaida WHERE id = ?";
+
         HistoricoSaida historico = null;
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -55,8 +63,10 @@ public class HistoricoSaidaDAO {
             if(rs.next()){
                 historico = new HistoricoSaida(
                         rs.getInt("id"),
+
                         rs.getInt("id_usuario"),
                         rs.getDate("dataSaida").toLocalDate(),
+
                         rs.getString("motivo"),
                         rs.getString("observacoes")
                 );
@@ -66,7 +76,9 @@ public class HistoricoSaidaDAO {
     }
 
     public static HistoricoSaida buscarPorUsuarioId(int usuarioId) throws SQLException {
+
         String comando = "SELECT * FROM historicoSaida WHERE id_usuario = ?";
+
         HistoricoSaida historico = null;
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
@@ -75,8 +87,10 @@ public class HistoricoSaidaDAO {
             if(rs.next()){
                 historico = new HistoricoSaida(
                         rs.getInt("id"),
+
                         rs.getInt("id_usuario"),
                         rs.getDate("dataSaida").toLocalDate(),
+
                         rs.getString("motivo"),
                         rs.getString("observacoes")
                 );
