@@ -13,18 +13,7 @@ public class RHController {
 
             switch (opcaoMenuPrincipal){
                 case 1: {
-                    int opcao = RHView.menuRH();
-
-                    switch (opcao){
-                        case 1 -> RHService.cadastrarUsuario();
-                        case 2 -> RHService.editarUsuario();
-                        case 3 -> RHService.inativarUsuario();
-                        case 4 -> RHService.listarUsuario();
-                        case 5 -> RHService.buscarUsuario();
-                        case 6 -> RHService.listarUsuariosInativos();
-                        case 0 -> { return; }
-                        default -> MessagesHelper.error("Opção inválida!");
-                    }
+                    UsuarioController.usuarioController();
                     break;
                 }
                 case 2: {
