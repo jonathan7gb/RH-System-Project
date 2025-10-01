@@ -25,9 +25,9 @@ public class FuncionarioView {
     public static void visualizarColegasDepartamento(List<Usuario> colegasDepartamento) {
         System.out.println("\n|| ----- Colegas de Departamento ----- ||");
 
-        System.out.printf("|| %-3s || %-20s || %-50s ||\n", "ID", "NOME", "CARGO");
+        System.out.printf("|| %-20s || %-50s ||\n", "NOME", "CARGO");
         for (Usuario u : colegasDepartamento) {
-            System.out.printf("|| %-3d || %-20s || %-50s ||\n", u.getId(), u.getNomeCompleto(), u.getCargo().getNome());
+            System.out.printf("|| %-20s || %-50s ||\n", u.getNomeCompleto(), u.getCargo().getNome());
         }
     }
 
