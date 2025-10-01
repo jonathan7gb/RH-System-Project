@@ -55,8 +55,19 @@ public class RHView {
         double salario = InputHelper.inputDouble("|| Salário do usuário (" + usuarioExistente.getSalario() + "): ", input);
         LocalDate dataAdmissao = InputHelper.inputDateOptional("|| Data de admissão do usuário (" + usuarioExistente.getDataAdmissao() + ") (Enter para manter): ", usuarioExistente.getDataAdmissao(), input);
         TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de usuário (" + usuarioExistente.getTipoUsuario() + "): ", input);
-        String senha = InputHelper.inputString("|| Senha do usuário (Enter para manter): ", input);
-
+        String senha = null;
+        while(true){
+            senha = InputHelper.inputString("|| Senha do usuário (Enter para manter): ", input);
+            if (senha.length() < 8) {
+                MessagesHelper.error("A senha deve ter no mínimo 8 caracteres!");
+            }else if (!senha.matches(".*[0-9].*")) {
+                MessagesHelper.error("A senha deve ter pelo menos 1 número!");
+            }else if (!senha.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                MessagesHelper.error("A senha deve ter pelo menos 1 caractere especial!");
+            }else{
+                break;
+            }
+        }
 
         if(!CPF.isBlank()){
             usuarioExistente.setCPF(CPF);
@@ -83,13 +94,12 @@ public class RHView {
         if(tipoUsuario != null){
             usuarioExistente.setTipoUsuario(tipoUsuario);
         }
-        if(!senha.isBlank()){
+        if(!senha.isBlank() || !senha.equals("") || senha != null){
             usuarioExistente.setSenha(senha);
         }
 
 
         return usuarioExistente;
-
 
     }
 
