@@ -55,9 +55,9 @@ public class DepartamentoView {
             MessagesHelper.error("Nenhum departamento cadastrado.");
             return;
         }else {
-            System.out.printf("|| %-3s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
+            System.out.printf("|| %-3s || %-30s || %-80s ||\n", "ID", "NOME", "DESCRIÇÃO");
             for (Departamento departamento : departamentos) {
-                System.out.printf("|| %-3d || %-20s || %-50s ||\n", departamento.getId(), departamento.getNome(), departamento.getDescricao());
+                System.out.printf("|| %-3d || %-30s || %-80s ||\n", departamento.getId(), departamento.getNome(), departamento.getDescricao());
             }
         }
     }

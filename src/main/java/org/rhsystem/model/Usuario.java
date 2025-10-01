@@ -54,6 +54,11 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Usuario(int id, String nomeCompleto, Cargo cargo) {
+        this.id = id;
+        this.nomeCompleto = nomeCompleto;
+        this.cargo = cargo;
+    }
 
 
     public int getId() {

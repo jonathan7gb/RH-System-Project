@@ -18,11 +18,13 @@ public class FuncionarioController {
                 }
 
                 case 2: {
-
+                    FuncionarioService.visualizarColegasDepartamento(usuario);
+                    break;
                 }
 
                 case 3: {
                     FuncionarioService.alterarSenha(usuario);
+                    break;
                 }
 
                 case 0: {
@@ -31,6 +33,7 @@ public class FuncionarioController {
 
                 default: {
                     MessagesHelper.error("Opção inválida!");
+                    break;
                 }
             }
 

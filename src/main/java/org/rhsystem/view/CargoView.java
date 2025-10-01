@@ -57,9 +57,9 @@ public class CargoView {
             return;
         }else {
 
-            System.out.printf("|| %-3s || %-20s || %-50s ||\n", "ID", "NOME", "DESCRIÇÃO");
+            System.out.printf("|| %-3s || %-30s || %-80s ||\n", "ID", "NOME", "DESCRIÇÃO");
             for (Cargo cargo : cargos) {
-                System.out.printf("|| %-3d || %-20s || %-50s ||\n", cargo.getId(), cargo.getNome(), cargo.getDescricao());
+                System.out.printf("|| %-3d || %-30s || %-80s ||\n", cargo.getId(), cargo.getNome(), cargo.getDescricao());
             }
         }
     }

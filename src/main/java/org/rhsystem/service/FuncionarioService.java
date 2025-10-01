@@ -1,13 +1,28 @@
 package org.rhsystem.service;
 
+import org.rhsystem.dao.FuncionarioDAO;
 import org.rhsystem.dao.TrocarSenhaDAO;
 import org.rhsystem.model.Usuario;
 import org.rhsystem.view.FuncionarioView;
 import org.rhsystem.view.MessagesHelper;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class FuncionarioService {
+
+    public static void visualizarColegasDepartamento(Usuario usuario){
+        try{
+            List<Usuario> colegas = FuncionarioDAO.visualizarColegasDepartamento(usuario.getDepartamento().getId());
+            if(!colegas.isEmpty()){
+                MessagesHelper.error("Nenhum Colega de Departamento encontrado!");
+            }else{
+                FuncionarioView.visualizarColegasDepartamento(colegas);
+            }
+        }catch (SQLException e){
+            MessagesHelper.error("Erro ao visualizar colegas de departamento: " + e.getMessage());
+        }
+    }
 
     public static void alterarSenha(Usuario usuario) {
         try {

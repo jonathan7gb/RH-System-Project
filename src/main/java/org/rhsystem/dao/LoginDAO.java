@@ -27,16 +27,16 @@ public class LoginDAO {
 
         if (rs.next()) {
             int id = rs.getInt("id");
-            String nomeCompleto = rs.getString("nome");
+            String nomeCompleto = rs.getString("nomeCompleto");
             String CPF = rs.getString("CPF");
             String emailUsuario = rs.getString("email");
             LocalDate dataNascimento = rs.getDate("dataNascimento").toLocalDate();
             int id_cargo = rs.getInt("id_cargo");
             int id_departamento = rs.getInt("id_departamento");
             Double salario = rs.getDouble("salario");
-            LocalDate dataAdmissao = rs.getDate("data_admissao").toLocalDate();
-            String tipo = rs.getString("tipo");
-            StatusUsuario status = StatusUsuario.valueOf(rs.getString("status"));
+            LocalDate dataAdmissao = rs.getDate("dataAdmissao").toLocalDate();
+            String tipo = rs.getString("tipoUsuario");
+            StatusUsuario status = StatusUsuario.valueOf(rs.getString("statusUsuario"));
             String senhaUsuario = rs.getString("senha");
 
             TipoUsuario tipoUsuario = TipoUsuario.valueOf(tipo);

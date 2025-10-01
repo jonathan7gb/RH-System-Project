@@ -1,7 +1,9 @@
 package org.rhsystem.view;
 
+import org.rhsystem.model.Departamento;
 import org.rhsystem.model.Usuario;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -10,15 +12,24 @@ public class FuncionarioView {
 
     // MENU FUNCIONARIO
     public static int menuFuncionario() {
-        System.out.println("\n|| ----- Funcionário ----- ||");
+        System.out.println("\n|| -------- Funcionário -------- ||");
 
-        System.out.println("|| 1- Visualizar Informações");
-        System.out.println("|| 2- Visualizar Colegas de Departamento");
-        System.out.println("|| 3- Trocar Senha");
-        System.out.println("|| 0- Sair do Sistema");
+        System.out.println("|| 1 - Visualizar Informações");
+        System.out.println("|| 2 - Visualizar Colegas de Departamento");
+        System.out.println("|| 3 - Trocar Senha");
+        System.out.println("|| 0 - Sair do Sistema");
         return InputHelper.inputInteger("|| Escolha uma opção: ", input);
     }
 
+    // VISUALIZAR COLEGAS DE DEPARTAMENTO
+    public static void visualizarColegasDepartamento(List<Usuario> colegasDepartamento) {
+        System.out.println("\n|| ----- Colegas de Departamento ----- ||");
+
+        System.out.printf("|| %-3s || %-20s || %-50s ||\n", "ID", "NOME", "CARGO");
+        for (Usuario u : colegasDepartamento) {
+            System.out.printf("|| %-3d || %-20s || %-50s ||\n", u.getId(), u.getNomeCompleto(), u.getCargo().getDescricao());
+        }
+    }
 
     // VISUALIZAR INFORMAÇÕES
     public static void visualizarInformacoes(Usuario usuario) {
