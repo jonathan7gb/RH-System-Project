@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RelatorioDAO {
@@ -54,9 +55,29 @@ public class RelatorioDAO {
         return totalDepartamentosExistentes;
     }
 
-//    public static Map<Departamento, Integer> totalFuncPorDepartamento() throws SQLException{
-//        return Map<Departamento, Integer> funcPorDepartamento = new HashMap<>();
-//    }
+    public static Map<Departamento, Integer> getQuantidadeFuncionarioPorDepartamento() throws SQLException {
+        Map<Departamento, Integer> resultados = new LinkedHashMap<>(); // Mantém a ordem
+
+        String sql = "SELECT d.id, d.nome, COUNT(u.id) AS total_func FROM departamento d " +
+                "LEFT JOIN usuario u ON d.id = u.id_departamento " +
+                "GROUP BY d.id, d.nome ORDER BY d.nome";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Departamento d = new Departamento();
+                d.setId(rs.getInt("id"));
+                d.setNome(rs.getString("nome"));
+
+                int contagem = rs.getInt("total_func");
+
+                resultados.put(d, contagem);
+            }
+        }
+        return resultados;
+    }
 //
 //    public static Map<Cargo, Integer> totalFuncPorCargo() throws SQLException{
 //        return Map<Cargo, Integer> funcPorCargo = new HashMap<>();

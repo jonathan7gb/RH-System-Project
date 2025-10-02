@@ -17,6 +17,12 @@ public class Departamento {
         this.descricao = descricao;
     }
 
+    public Departamento(){
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public String getDescricao() {
         return descricao;
     }

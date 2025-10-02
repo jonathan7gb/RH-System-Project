@@ -1,6 +1,9 @@
 package org.rhsystem.view;
 
+import org.rhsystem.model.Departamento;
+
 import javax.swing.plaf.TableHeaderUI;
+import java.util.Map;
 import java.util.Scanner;
 
 public class RelatoriosView {
@@ -57,6 +60,28 @@ public class RelatoriosView {
             System.out.println("|| Total de departamentos existentes: " + total);
             Thread.sleep(700);
             System.out.println("|| ============================================ ");
+            Thread.sleep(300);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void qntdFuncporDepart(Map<Departamento, Integer> resultados){
+        try{
+            Thread.sleep(300);
+            System.out.println("\n|| ==================================================== ||");
+            Thread.sleep(700);
+            System.out.printf("|| %-30s || %-18s ||\n", "DEPARTAMENTO", "TOTAL FUNCIONÁRIOS");
+            Thread.sleep(300);
+
+            for (Map.Entry<Departamento, Integer> entry : resultados.entrySet()) {
+                String nomeDepartamento = entry.getKey().getNome();
+                int totalFuncionarios = entry.getValue();
+                System.out.printf("|| %-30s || %-18d ||\n", nomeDepartamento, totalFuncionarios);
+                Thread.sleep(200);
+            }
+            System.out.println("|| ===================================================== ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {
