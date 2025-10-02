@@ -35,7 +35,9 @@ public class FuncionarioService {
             }else{
                 String novaSenha = FuncionarioView.inserirSenhaNova();
                 if(novaSenha == null){
-                    MessagesHelper.error("As senhas não coincidem / Erro de validação");
+                    MessagesHelper.error("Erro de validação");
+                } else if(novaSenha.equals("As senhas não coincidem")){
+                    MessagesHelper.error("As senhas não coincidem");
                 }else{
                     boolean senhaAlteradaComSucesso = TrocarSenhaDAO.alterarSenha(novaSenha, usuario);
 

@@ -74,7 +74,7 @@ public class FuncionarioView {
         if(Objects.equals(confirmacaoNovaSenha, novaSenha)) {
             return confirmacaoNovaSenha;
         }else {
-            return null;
+            return "As senhas não coincidem";
         }
 
     }
