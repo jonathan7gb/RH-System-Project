@@ -16,7 +16,7 @@ public class DepartamentoView {
         System.out.println("|| 3 - Listar Departamentos");
         System.out.println("|| 4 - Buscar Departamento");
         System.out.println("|| 0 - Voltar ao Menu Principal");
-        return InputHelper.inputInteger("Escolha uma opção: ", input);
+        return InputHelper.inputInteger("|| Escolha uma opção: ", input);
     }
 
     public static Departamento cadastrarDepartamento(){
