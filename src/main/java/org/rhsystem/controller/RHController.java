@@ -24,6 +24,9 @@ public class RHController {
                     DepartamentoController.departamentoController();
                     break;
                 }
+                case 4: {
+                    RelatorioController.relatorioController();
+                }
                 case 0: {
                     return;
                 }
