@@ -13,13 +13,5 @@ public class DatabaseConnection {
 
         return DriverManager.getConnection(url, user, password);
     }
-    public static void main(String[] args) {
-        try {
-            Connection conn = getConnection();
-            System.out.println("Conectado");
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println("Falha na conexão: " + e.getMessage());
-        }
-    }
+
 }

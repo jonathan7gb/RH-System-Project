@@ -16,7 +16,6 @@ public class Usuario {
     private double salario;
     private LocalDate dataAdmissao;
     private TipoUsuario tipoUsuario;
-
     private StatusUsuario statusUsuario;
     private String senha;
 
