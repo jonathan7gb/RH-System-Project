@@ -17,6 +17,12 @@ public class Cargo {
         this.descricao = descricao;
     }
 
+    public Cargo(){
+        this.id = 0;
+        this.nome = "";
+        this.descricao = "";
+    }
+
     public String getDescricao() {
         return descricao;
     }

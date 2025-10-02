@@ -18,9 +18,9 @@ public class Departamento {
     }
 
     public Departamento(){
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
+        this.id = 0;
+        this.nome = "";
+        this.descricao = "";
     }
 
     public String getDescricao() {

@@ -1,5 +1,6 @@
 package org.rhsystem.view;
 
+import org.rhsystem.model.Cargo;
 import org.rhsystem.model.Departamento;
 
 import javax.swing.plaf.TableHeaderUI;
@@ -14,10 +15,10 @@ public class RelatoriosView {
         System.out.println("|| 1 - TOTAL DE USUÁRIOS EXISTENTES (ATIVOS)");
         System.out.println("|| 2 - TOTAL DE CARGOS EXISTENTES");
         System.out.println("|| 3 - TOTAL DE DEPARTAMENTOS EXISTENTES");
-        System.out.println("|| 4 - QUANTIDADE DE FUNCIONÁRIOS POR DEPARTAMENTO");
-        System.out.println("|| 5 - QUANTIDADE DE FUNCIONÁRIOS POR CARGO");
-        System.out.println("|| 6 - MÉDIAS SALARIAIS POR DEPARTAMENTO");
+        System.out.println("|| 4 - QUANTIDADE DE FUNCIONÁRIOS POR CARGO");
+        System.out.println("|| 5 - QUANTIDADE DE FUNCIONÁRIOS POR DEPARTAMENTO");
         System.out.println("|| 6 - MÉDIAS SALARIAIS POR CARGO");
+        System.out.println("|| 7 - MÉDIAS SALARIAIS POR DEPARTAMENTO");
         System.out.println("|| 0 - VOLTAR AO MENU PRINCIPAL");
         return InputHelper.inputInteger("|| Escolha uma opção: ", input);
     }
@@ -88,4 +89,72 @@ public class RelatoriosView {
             e.printStackTrace();
         }
     }
+
+    public static void qntdFuncporCargo(Map<Cargo, Integer> resultados){
+        try{
+            Thread.sleep(300);
+            System.out.println("\n|| ==================================================== ||");
+            Thread.sleep(700);
+            System.out.printf("|| %-30s || %-18s ||\n", "CARGO", "TOTAL FUNCIONÁRIOS");
+            Thread.sleep(300);
+
+            for (Map.Entry<Cargo, Integer> entry : resultados.entrySet()) {
+                String nomeCargo = entry.getKey().getNome();
+                int totalFuncionarios = entry.getValue();
+                System.out.printf("|| %-30s || %-18d ||\n", nomeCargo, totalFuncionarios);
+                Thread.sleep(200);
+            }
+            System.out.println("|| ===================================================== ||");
+            Thread.sleep(300);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void mediaSalarialPorDepartamento(Map<Departamento, Double> resultados){
+        try{
+            Thread.sleep(300);
+            System.out.println("\n|| ==================================================== ||");
+            Thread.sleep(700);
+            System.out.printf("|| %-30s || %-18s ||\n", "DEPARTAMENTO", "MÉDIA SALARIAL");
+            Thread.sleep(300);
+
+            for (Map.Entry<Departamento, Double> entry : resultados.entrySet()) {
+                String nomeDepartamento = entry.getKey().getNome();
+                double mediaSalarial = entry.getValue();
+                System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeDepartamento, mediaSalarial);
+                Thread.sleep(200);
+            }
+            System.out.println("|| ===================================================== ||");
+            Thread.sleep(300);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void mediaSalarialPorCargo(Map<Cargo, Double> resultados){
+        try{
+            Thread.sleep(300);
+            System.out.println("\n|| ==================================================== ||");
+            Thread.sleep(700);
+            System.out.printf("|| %-30s || %-18s ||\n", "CARGO", "MÉDIA SALARIAL");
+            Thread.sleep(300);
+
+            for (Map.Entry<Cargo, Double> entry : resultados.entrySet()) {
+                String nomeCargo = entry.getKey().getNome();
+                double mediaSalarial = entry.getValue();
+                System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeCargo, mediaSalarial);
+                Thread.sleep(200);
+            }
+            System.out.println("|| ===================================================== ||");
+            Thread.sleep(300);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

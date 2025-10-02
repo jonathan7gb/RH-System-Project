@@ -14,8 +14,11 @@ public class RelatorioController {
                 case 1 -> RelatorioService.totalUsuariosExistentes();
                 case 2 -> RelatorioService.totalCargosExistentes();
                 case 3 -> RelatorioService.totalDepartamentosExistentes();
-                case 4 -> RelatorioService.qntdFuncPorDepart();
-                case 0 -> {return;}
+                case 4 -> RelatorioService.qntdFuncPorCargo();
+                case 5 -> RelatorioService.qntdFuncPorDepart();
+                case 6 -> RelatorioService.mediaSalarialPorCargo();
+                case 7 -> RelatorioService.mediaSalarialPorDepartamento();
+                case 0 -> { return; }
                 default -> MessagesHelper.error("Opção inválida!");
             }
         }while(true);

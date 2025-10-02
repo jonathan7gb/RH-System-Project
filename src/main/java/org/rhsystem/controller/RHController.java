@@ -26,6 +26,7 @@ public class RHController {
                 }
                 case 4: {
                     RelatorioController.relatorioController();
+                    break;
                 }
                 case 0: {
                     return;

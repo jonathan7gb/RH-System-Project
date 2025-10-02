@@ -56,7 +56,7 @@ public class RelatorioDAO {
     }
 
     public static Map<Departamento, Integer> getQuantidadeFuncionarioPorDepartamento() throws SQLException {
-        Map<Departamento, Integer> resultados = new LinkedHashMap<>(); // Mantém a ordem
+        Map<Departamento, Integer> resultados = new LinkedHashMap<>();
 
         String sql = "SELECT d.id, d.nome, COUNT(u.id) AS total_func FROM departamento d " +
                 "LEFT JOIN usuario u ON d.id = u.id_departamento " +
@@ -78,16 +78,98 @@ public class RelatorioDAO {
         }
         return resultados;
     }
-//
-//    public static Map<Cargo, Integer> totalFuncPorCargo() throws SQLException{
-//        return Map<Cargo, Integer> funcPorCargo = new HashMap<>();
-//    }
-//
-//    public static Map<Departamento, Double> mediaSalarialPorDepartamento() throws SQLException{
-//        return Map<Departamento, Integer> funcPorDepartamento = new HashMap<>();
-//    }
-//
-//    public static Map<Cargo, Double> mediaSalarialPorCargo() throws SQLException{
-//        return Map<Cargo, Integer> funcPorCargo = new HashMap<>();
-//    }
+
+    public static Map<Cargo, Integer> getQuantidadeFuncionarioPorCargo() throws SQLException {
+        Map<Cargo, Integer> resultados = new LinkedHashMap<>();
+
+        String sql = "SELECT c.id, c.nome, COUNT(u.id) AS total_func FROM cargo c " +
+                "LEFT JOIN usuario u ON c.id = u.id_cargo " +
+                "GROUP BY c.id, c.nome ORDER BY c.nome";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Cargo d = new Cargo();
+                d.setId(rs.getInt("id"));
+                d.setNome(rs.getString("nome"));
+
+                int contagem = rs.getInt("total_func");
+
+                resultados.put(d, contagem);
+            }
+        }
+        return resultados;
+    }
+
+    public static Map<Departamento, Double> mediaSalarialPorDepartamento() throws SQLException {
+        Map<Departamento, Double> resultados = new LinkedHashMap<>();
+
+        String sql = """
+                SELECT 
+                    d.id,
+                    d.nome, 
+                    AVG(u.salario) AS media_salarial 
+                FROM 
+                    departamento d 
+                JOIN 
+                    usuario u ON d.id = u.id_departamento 
+                GROUP BY 
+                    d.id, d.nome 
+                ORDER BY 
+                    d.nome
+                    """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Departamento d = new Departamento();
+                d.setId(rs.getInt("id"));
+                d.setNome(rs.getString("nome"));
+
+                double mediaSalarial = rs.getDouble("media_salarial");
+
+                resultados.put(d, mediaSalarial);
+            }
+        }
+        return resultados;
+    }
+
+    public static Map<Cargo, Double> mediaSalarialPorCargo() throws SQLException {
+        Map<Cargo, Double> resultados = new LinkedHashMap<>();
+
+        String sql = """
+                SELECT 
+                    c.id,
+                    c.nome, 
+                    AVG(u.salario) AS media_salarial 
+                FROM 
+                    cargo c 
+                JOIN 
+                    usuario u ON c.id = u.id_departamento 
+                GROUP BY 
+                    c.id, c.nome 
+                ORDER BY 
+                    c.nome
+                    """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Cargo c = new Cargo();
+                c.setId(rs.getInt("id"));
+                c.setNome(rs.getString("nome"));
+
+                double mediaSalarial = rs.getDouble("media_salarial");
+
+                resultados.put(c, mediaSalarial);
+            }
+        }
+        return resultados;
+    }
 }
