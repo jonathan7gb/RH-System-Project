@@ -16,13 +16,14 @@ import java.time.LocalDate;
 public class LoginDAO {
 
     public static Usuario checarUsuario(String email, String senha) throws SQLException{
-        String comando = "SELECT * FROM usuario WHERE senha = ? and email = ?";
+        String comando = "SELECT * FROM usuario WHERE senha = ? and email = ? and statusUsuario = ?";
 
         Connection connection = DatabaseConnection.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(comando);
 
         preparedStatement.setString(1, senha);
         preparedStatement.setString(2, email);
+        preparedStatement.setString(3, "ATIVO");
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
