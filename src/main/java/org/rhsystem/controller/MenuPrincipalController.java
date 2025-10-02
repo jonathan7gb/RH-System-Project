@@ -26,7 +26,7 @@ public class MenuPrincipalController {
            if(usuario == null){
                MessagesHelper.error("Usuário ou Senha Incorretos");
            }else{
-               if (usuario.getTipoUsuario() == TipoUsuario.ADMIN){
+               if (usuario.getTipoUsuario() == TipoUsuario.RH){
                    System.out.println("\n|| ---- LOGADO COM SUCESSO ---- ||");
                    RHController.rhController();
                } else if (usuario.getTipoUsuario() == TipoUsuario.FUNCIONARIO){

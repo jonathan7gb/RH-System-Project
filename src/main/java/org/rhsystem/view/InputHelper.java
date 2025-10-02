@@ -183,13 +183,13 @@ public class InputHelper {
     public static TipoUsuario inputTipoUsuario(String mensagem, Scanner sc) {
         while (true) {
             System.out.println("|| Tipos de usuário disponíveis:");
-            System.out.println("|| 0 - " + TipoUsuario.ADMIN.name());
+            System.out.println("|| 0 - " + TipoUsuario.RH.name());
             System.out.println("|| 1 - " + TipoUsuario.FUNCIONARIO.name());
 
             int opcao = inputInteger(mensagem, sc);
 
             if (opcao == 0) {
-                return TipoUsuario.ADMIN;
+                return TipoUsuario.RH;
             } else if (opcao == 1) {
                 return TipoUsuario.FUNCIONARIO;
             } else {
@@ -205,8 +205,8 @@ public class InputHelper {
     public static StatusUsuario inputStatusUsuario(String mensagem, Scanner sc) {
         while (true) {
             System.out.println("|| Status de usuário disponíveis:");
-            System.out.println("|| 0 - " + StatusUsuario.ATIVO.name());
-            System.out.println("|| 1 - " + StatusUsuario.INATIVO.name());
+            System.out.println("|| 0 - " + StatusUsuario.ATIVO.getDescricao());
+            System.out.println("|| 1 - " + StatusUsuario.INATIVO.getDescricao());
 
             int opcao = inputInteger(mensagem, sc);
 

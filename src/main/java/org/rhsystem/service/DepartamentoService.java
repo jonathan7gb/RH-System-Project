@@ -53,10 +53,14 @@ public class DepartamentoService {
     public static void buscarDepartamento(){
         try{
             int id = DepartamentoView.buscarDepartamento();
-            List<Departamento> departamentos = new ArrayList<>();
             Departamento departamento = DepartamentoDAO.buscarDepartamentoPorId(id);
-            departamentos.add(departamento);
-            DepartamentoView.listarDepartamentos(departamentos);
+            if(departamento != null){
+                List<Departamento> departamentos = new ArrayList<>();
+                departamentos.add(departamento);
+                DepartamentoView.listarDepartamentos(departamentos);
+            }else{
+                MessagesHelper.info("Departamento com ID " +id+ " não encontrado!");
+            }
         }catch (SQLException e){
             MessagesHelper.error(e.getMessage());
         }

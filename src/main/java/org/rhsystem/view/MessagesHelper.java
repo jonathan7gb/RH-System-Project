@@ -19,6 +19,6 @@ public class MessagesHelper {
     }
 
     public static void info(String message) {
-        System.out.println("\u001B[34m|| <| INFO |> " + message + "\u001B[0m");
+        System.out.println("\n\u001B[34m|| <| INFO |> " + message + "\u001B[0m");
     }
 }

@@ -90,8 +90,8 @@ public class RHDAO {
                         departamento,
                         rs.getDouble("salario"),
                         rs.getDate("dataAdmissao").toLocalDate(),
-                        TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
+                        TipoUsuario.valueOf(rs.getString("tipoUsuario").toUpperCase()),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario").toUpperCase()),
 
                         rs.getString("senha")
                 );
@@ -123,8 +123,8 @@ public class RHDAO {
                         departamento,
                         rs.getDouble("salario"),
                         rs.getDate("dataAdmissao").toLocalDate(),
-                        TipoUsuario.valueOf(rs.getString("tipoUsuario")),
-                        StatusUsuario.valueOf(rs.getString("statusUsuario")),
+                        TipoUsuario.valueOf(rs.getString("tipoUsuario").toUpperCase()),
+                        StatusUsuario.valueOf(rs.getString("statusUsuario").toUpperCase()),
 
                         rs.getString("senha")
                 );

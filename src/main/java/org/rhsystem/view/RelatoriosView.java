@@ -101,7 +101,7 @@ public class RelatoriosView {
             for (Map.Entry<Cargo, Integer> entry : resultados.entrySet()) {
                 String nomeCargo = entry.getKey().getNome();
                 int totalFuncionarios = entry.getValue();
-                System.out.printf("|| %-30s || %-18d ||\n", nomeCargo, totalFuncionarios);
+                System.out.printf("|| %-30s || %-18d ||", nomeCargo, totalFuncionarios);
                 Thread.sleep(200);
             }
             System.out.println("|| -------------------------------------------------- ||");
@@ -117,7 +117,7 @@ public class RelatoriosView {
             Thread.sleep(300);
             System.out.println("\n|| -------------------------------------------------- ||");
             Thread.sleep(700);
-            System.out.printf("|| %-30s || %-18s ||\n", "DEPARTAMENTO", "MÉDIA SALARIAL");
+            System.out.printf("|| %-30s || %-18s ||", "DEPARTAMENTO", "MÉDIA SALARIAL");
             Thread.sleep(300);
 
             for (Map.Entry<Departamento, Double> entry : resultados.entrySet()) {

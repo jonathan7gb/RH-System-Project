@@ -23,7 +23,7 @@ public class LoginDAO {
 
         preparedStatement.setString(1, senha);
         preparedStatement.setString(2, email);
-        preparedStatement.setString(3, "ATIVO");
+        preparedStatement.setString(3, "Ativo");
         ResultSet rs = preparedStatement.executeQuery();
 
         if (rs.next()) {
@@ -36,8 +36,8 @@ public class LoginDAO {
             int id_departamento = rs.getInt("id_departamento");
             Double salario = rs.getDouble("salario");
             LocalDate dataAdmissao = rs.getDate("dataAdmissao").toLocalDate();
-            String tipo = rs.getString("tipoUsuario");
-            StatusUsuario status = StatusUsuario.valueOf(rs.getString("statusUsuario"));
+            String tipo = rs.getString("tipoUsuario").toUpperCase();
+            StatusUsuario status = StatusUsuario.valueOf(rs.getString("statusUsuario").toUpperCase());
             String senhaUsuario = rs.getString("senha");
 
             TipoUsuario tipoUsuario = TipoUsuario.valueOf(tipo);

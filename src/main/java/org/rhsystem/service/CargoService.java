@@ -2,7 +2,9 @@ package org.rhsystem.service;
 
 import org.rhsystem.dao.CargoDAO;
 import org.rhsystem.model.Cargo;
+import org.rhsystem.model.Departamento;
 import org.rhsystem.view.CargoView;
+import org.rhsystem.view.DepartamentoView;
 import org.rhsystem.view.MessagesHelper;
 
 import java.sql.SQLException;
@@ -52,10 +54,15 @@ public class CargoService {
     public static void buscarCargo(){
         try{
             int id = CargoView.buscarCargo();
-            List<Cargo> cargos = new ArrayList<>();
             Cargo cargo = CargoDAO.buscarCargoPorId(id);
-            cargos.add(cargo);
-            CargoView.listarCargos(cargos);
+            if(cargo != null){
+                List<Cargo> cargos = new ArrayList<>();
+                cargos.add(cargo);
+                CargoView.listarCargos(cargos);
+            }else{
+                MessagesHelper.info("Cargo com ID " +id+ " não encontrado!");
+            }
+
         }catch (SQLException e){
             MessagesHelper.error(e.getMessage());
         }

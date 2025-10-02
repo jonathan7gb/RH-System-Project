@@ -107,7 +107,7 @@ public class RHService {
                 MessagesHelper.success("Usuário inativado e histórico registrado com sucesso!");
 
             } else {
-                MessagesHelper.error("Inativação cancelada pelo usuário.");
+                MessagesHelper.info("Inativação cancelada pelo usuário.");
             }
 
         } catch (SQLException e) {

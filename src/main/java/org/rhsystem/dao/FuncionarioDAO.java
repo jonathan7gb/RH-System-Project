@@ -2,10 +2,7 @@ package org.rhsystem.dao;
 
 import org.rhsystem.DBConnection.DatabaseConnection;
 import org.rhsystem.model.Cargo;
-import org.rhsystem.model.Departamento;
 import org.rhsystem.model.Usuario;
-import org.rhsystem.model.enums.StatusUsuario;
-import org.rhsystem.model.enums.TipoUsuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

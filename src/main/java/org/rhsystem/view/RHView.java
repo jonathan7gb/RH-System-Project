@@ -167,11 +167,12 @@ public class RHView {
     }
 
     public static void listarUsuario (List<Usuario> usuarios){
-        System.out.println("\n|| ------- Listar usuários ------- ||\n");
+        System.out.println("\n|| ------- Listar usuários ------- ||");
         if(usuarios.isEmpty()) {
             MessagesHelper.error("Nenhum usuário cadastrado.");
             return;
         }else{
+            System.out.println();
             for(Usuario usuario : usuarios){
 
                 System.out.println("|| ------------------------------------------------------------");
@@ -194,7 +195,7 @@ public class RHView {
     }
 
     public static void listarUsuariosInativos (List<HistoricoSaida> historicoSaidas){
-        System.out.println("\n|| ------- Listar usuários inátivos------- ||\n");
+        System.out.println("\n|| ------- Listar usuários inátivos------- ||");
         if(historicoSaidas.isEmpty()) {
             MessagesHelper.error("Nenhum usuário inativo encontrado.");
             return;

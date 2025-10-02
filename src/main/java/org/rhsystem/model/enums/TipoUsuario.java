@@ -1,8 +1,8 @@
 package org.rhsystem.model.enums;
 
 public enum TipoUsuario {
-    ADMIN("Admin"),
-    FUNCIONARIO("Funcionário");
+    RH("RH"),
+    FUNCIONARIO("Funcionario");
 
     private final String descricao;
 
