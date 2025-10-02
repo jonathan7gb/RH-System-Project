@@ -28,8 +28,8 @@ public class TrocarSenhaDAO {
         String comando = "UPDATE usuario SET senha = ? WHERE email = ?";
 
         try(Connection conn = DatabaseConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(comando)) {
-            stmt.setString(1, usuario.getEmail());
-            stmt.setString(2, Novasenha);
+            stmt.setString(1, Novasenha);
+            stmt.setString(2, usuario.getEmail());
             stmt.executeUpdate();
             return true;
         }
