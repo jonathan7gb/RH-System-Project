@@ -56,19 +56,54 @@ public class RHView {
 
     public static Usuario editarUsuario( Usuario usuarioExistente){
         System.out.println("\n|| ---------- Editar Usuário ---------- ||");
-        String CPF = InputHelper.inputString("|| CPF do usuário (" + usuarioExistente.getCPF() +") (Enter para manter): ", input);//possivel dor de cabeça, rever dps
+        String CPF;
+        while (true) {
+            CPF = InputHelper.inputString("|| CPF do usuário (" + usuarioExistente.getCPF() + ") (Enter para manter): ", input);
+            if (CPF.isBlank()) {
+                break;
+            }
+
+            if (CPF.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+                break;
+            } else {
+                MessagesHelper.error("Formato de CPF inválido! Use o formato xxx.xxx.xxx-xx");
+            }
+        }
         String nome = InputHelper.inputString("|| Nome do usuário (" + usuarioExistente.getNomeCompleto() + ") (Enter para manter): ", input);
-        String email = InputHelper.inputString("|| Email do usuário (" + usuarioExistente.getEmail() + ") (Enter para manter): ", input);
+        String email;
+        while (true) {
+            email = InputHelper.inputString("|| Email do usuário (" + usuarioExistente.getEmail() + ") (Enter para manter): ", input);
+            if (email.isBlank()) {
+                break;
+            }
+
+            String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+            if (email.matches(emailRegex)) {
+                break;
+            } else {
+                MessagesHelper.error("Formato de e-mail inválido! Ex: nome@dominio.com");
+            }
+        }
         LocalDate dataNascimento = InputHelper.inputDateOptional("|| Data de nascimento do usuário (" + usuarioExistente.getDataNascimento() + ") (Enter para manter): ", usuarioExistente.getDataNascimento(), input);
         Cargo cargo = InputHelper.inputCargo("|| Cargo do usuário (" + usuarioExistente.getCargo() + "): ", input);
         Departamento departamento = InputHelper.inputDepartamento("|| Departamento do usuário (" + usuarioExistente.getDepartamento() + ") : ", input);
-        double salario = 0.0;
-        while(true) {
-            salario = InputHelper.inputDouble("|| Salário do usuário (" + usuarioExistente.getSalario() + "): ", input);
-            if(salario < 0.0) {
-                MessagesHelper.info("O salário não pode ser negativo");
-            }else{
+        double salario = usuarioExistente.getSalario();
+        String salarioStr;
+        while (true) {
+            salarioStr = InputHelper.inputString("|| Salário do usuário (" + usuarioExistente.getSalario() + ") (Enter para manter): ", input);
+            if (salarioStr.isBlank()) {
                 break;
+            }
+            try {
+                double novoSalario = Double.parseDouble(salarioStr.replace(",", "."));
+                if (novoSalario < 0.0) {
+                    MessagesHelper.info("O salário não pode ser negativo.");
+                } else {
+                    salario = novoSalario;
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                MessagesHelper.error("Entrada inválida. Por favor, digite um número válido.");
             }
         }
         LocalDate dataAdmissao = InputHelper.inputDateOptional("|| Data de admissão do usuário (" + usuarioExistente.getDataAdmissao() + ") (Enter para manter): ", usuarioExistente.getDataAdmissao(), input);
@@ -89,35 +124,36 @@ public class RHView {
             }
         }
 
-        if(!CPF.isBlank()){
+        if (!CPF.isBlank()) {
             usuarioExistente.setCPF(CPF);
         }
-        if(!nome.isBlank()){
+        if (!nome.isBlank()) {
             usuarioExistente.setNomeCompleto(nome);
         }
-        if(!email.isBlank()){
+        if (!email.isBlank()) {
             usuarioExistente.setEmail(email);
         }
+
         usuarioExistente.setDataNascimento(dataNascimento);
 
-        if(cargo != null){
+        if (cargo != null) {
             usuarioExistente.setCargo(cargo);
         }
-        if(departamento != null){
+        if (departamento != null) {
             usuarioExistente.setDepartamento(departamento);
         }
-        if(salario > 0){
+        if (!salarioStr.isBlank()) {
             usuarioExistente.setSalario(salario);
         }
+
         usuarioExistente.setDataAdmissao(dataAdmissao);
 
-        if(tipoUsuario != null){
+        if (tipoUsuario != null) {
             usuarioExistente.setTipoUsuario(tipoUsuario);
         }
-        if(!senha.isEmpty()){
+        if (!senha.isEmpty()) {
             usuarioExistente.setSenha(senha);
         }
-
 
         return usuarioExistente;
 

@@ -7,7 +7,6 @@ import org.rhsystem.view.MessagesHelper;
 import org.rhsystem.view.RelatoriosView;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
