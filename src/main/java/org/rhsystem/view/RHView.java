@@ -138,14 +138,14 @@ public class RHView {
         }else{
             for(Usuario usuario : usuarios){
 
-                System.out.println("---------------------------------------------------------------");
+                System.out.println("|| ------------------------------------------------------------");
 
                 System.out.println("|| ID: "+ usuario.getId());
                 System.out.println("|| Nome do colaborador: "+ usuario.getNomeCompleto());
                 System.out.println("|| Cargo do colaborador: "+ usuario.getCargo().getNome());
                 System.out.println("|| Departamento do colaborador: "+ usuario.getDepartamento().getNome());
 
-                System.out.println("----------------------------------------------------------------");
+                System.out.println("|| -------------------------------------------------------------");
 
 
             }
@@ -167,7 +167,7 @@ public class RHView {
                 System.out.println("|| ID: "+ historicoSaida.getUsuarioId());
                 System.out.println("|| Data de saída: "+ historicoSaida.getDataSaida());
                 System.out.println("|| Motivo da saída do colaborador: "+ historicoSaida.getMotivo());
-                System.out.println("----------------------------------------------------------------------");
+                System.out.println("|| ------------------------------------------------------------------");
             }
         }
     }
