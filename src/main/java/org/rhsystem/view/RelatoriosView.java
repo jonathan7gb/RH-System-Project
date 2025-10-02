@@ -45,7 +45,7 @@ public class RelatoriosView {
             Thread.sleep(700);
             System.out.println("|| Total de cargos existentes: " + total);
             Thread.sleep(700);
-            System.out.println("\n|| ------------------------------------------ ||");
+            System.out.println("|| ------------------------------------------ ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {
@@ -71,7 +71,7 @@ public class RelatoriosView {
     public static void qntdFuncporDepart(Map<Departamento, Integer> resultados){
         try{
             Thread.sleep(300);
-            System.out.println("\n|| -------------------------------------------------- ||");
+            System.out.println("\n|| ---------------------------------------------------- ||");
             Thread.sleep(700);
             System.out.printf("|| %-30s || %-18s ||\n", "DEPARTAMENTO", "TOTAL FUNCIONÁRIOS");
             Thread.sleep(300);
@@ -82,7 +82,7 @@ public class RelatoriosView {
                 System.out.printf("|| %-30s || %-18d ||\n", nomeDepartamento, totalFuncionarios);
                 Thread.sleep(200);
             }
-            System.out.println("|| -------------------------------------------------- ||");
+            System.out.println("|| ---------------------------------------------------- ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {
@@ -93,7 +93,7 @@ public class RelatoriosView {
     public static void qntdFuncporCargo(Map<Cargo, Integer> resultados){
         try{
             Thread.sleep(300);
-            System.out.println("\n|| -------------------------------------------------- ||");
+            System.out.println("\n|| ---------------------------------------------------- ||");
             Thread.sleep(700);
             System.out.printf("|| %-30s || %-18s ||\n", "CARGO", "TOTAL FUNCIONÁRIOS");
             Thread.sleep(300);
@@ -101,10 +101,10 @@ public class RelatoriosView {
             for (Map.Entry<Cargo, Integer> entry : resultados.entrySet()) {
                 String nomeCargo = entry.getKey().getNome();
                 int totalFuncionarios = entry.getValue();
-                System.out.printf("|| %-30s || %-18d ||", nomeCargo, totalFuncionarios);
+                System.out.printf("|| %-30s || %-18d ||\n", nomeCargo, totalFuncionarios);
                 Thread.sleep(200);
             }
-            System.out.println("|| -------------------------------------------------- ||");
+            System.out.println("|| ---------------------------------------------------- ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {
@@ -115,7 +115,7 @@ public class RelatoriosView {
     public static void mediaSalarialPorDepartamento(Map<Departamento, Double> resultados){
         try{
             Thread.sleep(300);
-            System.out.println("\n|| -------------------------------------------------- ||");
+            System.out.println("\n|| ---------------------------------------------------- ||");
             Thread.sleep(700);
             System.out.printf("|| %-30s || %-18s ||", "DEPARTAMENTO", "MÉDIA SALARIAL");
             Thread.sleep(300);
@@ -126,7 +126,7 @@ public class RelatoriosView {
                 System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeDepartamento, mediaSalarial);
                 Thread.sleep(200);
             }
-            System.out.println("|| -------------------------------------------------- ||");
+            System.out.println("|| ---------------------------------------------------- ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {
@@ -137,7 +137,7 @@ public class RelatoriosView {
     public static void mediaSalarialPorCargo(Map<Cargo, Double> resultados){
         try{
             Thread.sleep(300);
-            System.out.println("\n|| -------------------------------------------------- ||");
+            System.out.println("\n|| ---------------------------------------------------- ||");
             Thread.sleep(700);
             System.out.printf("|| %-30s || %-18s ||\n", "CARGO", "MÉDIA SALARIAL");
             Thread.sleep(300);
@@ -148,7 +148,7 @@ public class RelatoriosView {
                 System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeCargo, mediaSalarial);
                 Thread.sleep(200);
             }
-            System.out.println("|| -------------------------------------------------- ||");
+            System.out.println("|| ---------------------------------------------------- ||");
             Thread.sleep(300);
 
         } catch (InterruptedException e) {

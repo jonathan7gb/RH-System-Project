@@ -10,6 +10,7 @@ import org.rhsystem.view.MessagesHelper;
 import org.rhsystem.view.RHView;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class RHService {
             }else{
                 MessagesHelper.error("Dados inválidos. Cargo não cadastrado.");
             }
-        }catch (SQLException e){
+        }catch (SQLIntegrityConstraintViolationException e){
+            MessagesHelper.error("Uma das causas desse erro é valor duplicado. \n|| Então o CPF ou email que você digitou possivelmente já está em uso!!");
+        } catch (SQLException e) {
             MessagesHelper.error(e.getMessage());
         }
     }
