@@ -117,13 +117,13 @@ public class RelatoriosView {
             Thread.sleep(300);
             System.out.println("\n|| ---------------------------------------------------- ||");
             Thread.sleep(700);
-            System.out.printf("|| %-30s || %-18s ||", "DEPARTAMENTO", "MÉDIA SALARIAL");
+            System.out.printf("|| %-30s || %-18s ||\n", "DEPARTAMENTO", "MÉDIA SALARIAL");
             Thread.sleep(300);
 
             for (Map.Entry<Departamento, Double> entry : resultados.entrySet()) {
                 String nomeDepartamento = entry.getKey().getNome();
                 double mediaSalarial = entry.getValue();
-                System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeDepartamento, mediaSalarial);
+                System.out.printf("|| %-30s || R$%-15.2f  ||\n", nomeDepartamento, mediaSalarial);
                 Thread.sleep(200);
             }
             System.out.println("|| ---------------------------------------------------- ||");
@@ -145,7 +145,7 @@ public class RelatoriosView {
             for (Map.Entry<Cargo, Double> entry : resultados.entrySet()) {
                 String nomeCargo = entry.getKey().getNome();
                 double mediaSalarial = entry.getValue();
-                System.out.printf("|| %-30s || R$%-15.2f   ||\n", nomeCargo, mediaSalarial);
+                System.out.printf("|| %-30s || R$%-15.2f  ||\n", nomeCargo, mediaSalarial);
                 Thread.sleep(200);
             }
             System.out.println("|| ---------------------------------------------------- ||");
