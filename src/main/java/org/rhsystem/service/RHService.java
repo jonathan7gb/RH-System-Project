@@ -26,7 +26,7 @@ public class RHService {
                 MessagesHelper.error("Dados inválidos. Cargo não cadastrado.");
             }
         }catch (SQLIntegrityConstraintViolationException e){
-            MessagesHelper.error("Uma das causas desse erro é valor duplicado. \n|| Então o CPF ou email que você digitou possivelmente já está em uso!!");
+            MessagesHelper.error("|| Erro ao cadastrar o usuário. Verifique os dados e cadastre novamente!adm");
         } catch (SQLException e) {
             MessagesHelper.error(e.getMessage());
         }

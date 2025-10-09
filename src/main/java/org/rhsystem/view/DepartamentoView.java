@@ -46,7 +46,7 @@ public class DepartamentoView {
         }
 
         if(descricao.isEmpty() && nome.isEmpty()){
-            MessagesHelper.info("A edição será confirmada, porém você manteu tudo como estava!");
+            MessagesHelper.info("A edição será confirmada, porém você manteve tudo como estava!");
         }
 
         return departamento;

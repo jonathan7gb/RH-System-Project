@@ -3,11 +3,11 @@ package org.rhsystem.view;
 public class MessagesHelper {
 
     public static void invalidIntInput() {
-        System.out.println("|| Entrada inválida! Por favor, insira um número inteiro.");
+        System.out.println("\n\u001B[31m|| Entrada inválida! Por favor, insira um número inteiro.\u001B[0m");
     }
 
     public static void invalidDoubleInput() {
-        System.out.println("|| Entrada inválida! Por favor, insira um número decimal ou inteiro.");
+        System.out.println("\n\u001B[31m|| Entrada inválida! Por favor, insira um número decimal ou inteiro.\u001B[0m");
     }
 
     public static void error(String message) {

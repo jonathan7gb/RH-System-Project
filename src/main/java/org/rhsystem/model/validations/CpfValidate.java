@@ -25,7 +25,7 @@ public class CpfValidate {
             if (cpf.matches(cpfRegex)) {
                 return cpf;
             } else {
-                MessagesHelper.error("Formato de CPF inválido! Use o formato xxx.xxx.xxx-xx");
+                MessagesHelper.error("Formato de CPF inválido! Use o formato xxx.xxx.xxx-xx\n");
             }
         }
     }

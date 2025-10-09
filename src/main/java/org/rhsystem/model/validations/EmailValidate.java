@@ -25,7 +25,7 @@ public class EmailValidate {
             if (email.matches(emailRegex)) {
                 return email;
             } else {
-                MessagesHelper.error("Formato de e-mail inválido! Ex: teste@teste.com");
+                MessagesHelper.error("Formato de e-mail inválido! Ex: teste@teste.com\n");
 
             }
         }
