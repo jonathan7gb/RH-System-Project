@@ -1,0 +1,55 @@
+package org.rhsystem.service;
+
+import org.rhsystem.dao.FuncionarioDAO;
+import org.rhsystem.dao.TrocarSenhaDAO;
+import org.rhsystem.model.Usuario;
+import org.rhsystem.view.FuncionarioView;
+import org.rhsystem.view.MessagesHelper;
+
+import java.sql.SQLException;
+import java.util.List;
+
+public class FuncionarioService {
+
+    public static void visualizarColegasDepartamento(Usuario usuario){
+        try{
+            List<Usuario> colegas = FuncionarioDAO.visualizarColegasDepartamento(usuario.getDepartamento().getId());
+            if(colegas.isEmpty()){
+                System.out.println();
+                MessagesHelper.info("Nenhum Colega de Departamento encontrado!");
+            }else{
+                FuncionarioView.visualizarColegasDepartamento(colegas, usuario.getDepartamento().getNome());
+            }
+        }catch (SQLException e){
+            MessagesHelper.error("Erro ao visualizar colegas de departamento: " + e.getMessage());
+        }
+    }
+
+    public static void alterarSenha(Usuario usuario) {
+        try {
+            String senhaAtual = FuncionarioView.inserirSenhaAtual();
+            boolean senhaValida = TrocarSenhaDAO.verificarSenha(usuario, senhaAtual);
+
+            if(!senhaValida){
+                MessagesHelper.error("Senha atual incorreta");
+            }else{
+                String novaSenha = FuncionarioView.inserirSenhaNova();
+                if(novaSenha == null){
+                    MessagesHelper.error("Erro de validação");
+                } else if(novaSenha.equals("As senhas não coincidem")){
+                    MessagesHelper.error("As senhas não coincidem");
+                }else{
+                    boolean senhaAlteradaComSucesso = TrocarSenhaDAO.alterarSenha(novaSenha, usuario);
+
+                    if(senhaAlteradaComSucesso){
+                        MessagesHelper.success("Senha alterada com sucesso");
+                    }else{
+                        MessagesHelper.error("Senha não foi alterada!");
+                    }
+                }
+            }
+        }catch (SQLException e) {
+            MessagesHelper.error(e.getMessage());
+        }
+    }
+}

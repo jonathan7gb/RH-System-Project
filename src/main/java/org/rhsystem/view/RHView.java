@@ -1,0 +1,226 @@
+package org.rhsystem.view;
+import org.rhsystem.model.Cargo;
+import org.rhsystem.model.Departamento;
+import org.rhsystem.model.HistoricoSaida;
+import org.rhsystem.model.Usuario;
+import org.rhsystem.model.enums.StatusUsuario;
+import org.rhsystem.model.enums.TipoUsuario;
+import org.rhsystem.model.validations.CpfValidate;
+import org.rhsystem.model.validations.EmailValidate;
+import org.rhsystem.model.validations.SenhaValidate;
+import org.rhsystem.view.HistoricoSaidaView;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Scanner;
+public class RHView {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static int menuRH(){
+        System.out.println("\n|| ---------- Usuário ---------- ||");
+        System.out.println("|| 1 - Cadastrar usuário");
+        System.out.println("|| 2 - Editar usuário");
+        System.out.println("|| 3 - Inativar usuários");
+        System.out.println("|| 4 - Listar usuários");
+        System.out.println("|| 5 - Buscar usuários");
+        System.out.println("|| 6 - Listar usuários inativos");
+        System.out.println("|| 0 - Voltar ao Menu Principal");
+        return InputHelper.inputInteger("|| Selecione uma opção: ", input);
+    }
+
+    public static Usuario cadastrarUsuario(){
+        System.out.println("\n|| ---------- Cadastrar Usuário ---------- ||");
+        String CPF = CpfValidate.cpfValidate();
+        String nomeCompleto = InputHelper.inputString("|| Nome do usuário: ", input);
+        String email = EmailValidate.emailValidate();
+        LocalDate dataNascimento = InputHelper.inputDate("|| Data de nascimento do usuário: ", input);
+        Cargo cargo = InputHelper.inputCargo("|| ID do cargo: ", input);
+        Departamento departamento = InputHelper.inputDepartamento("|| ID do departamento: ", input);
+        double salario = 0.0;
+        while(true) {
+            salario = InputHelper.inputDouble("|| Salário do usuário: ", input);
+            if(salario < 0.0) {
+                MessagesHelper.info("O salário não pode ser negativo");
+            }else{
+                break;
+            }
+        }
+        LocalDate dataAdmissao = InputHelper.inputDate("|| Data de admissao do usuário: ", input);
+        TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de Usuario: ", input);
+        String senha = SenhaValidate.validarSenha("|| Digite a Senha: ");
+        Usuario usuario = new Usuario(0,CPF, nomeCompleto, email, dataNascimento, cargo, departamento, salario, dataAdmissao, tipoUsuario, StatusUsuario.ATIVO, senha);
+
+        return usuario;
+    }
+
+    public static Usuario editarUsuario( Usuario usuarioExistente){
+        System.out.println("\n|| ---------- Editar Usuário ---------- ||");
+        String CPF;
+        while (true) {
+            CPF = InputHelper.inputString("|| CPF do usuário (" + usuarioExistente.getCPF() + ") (Enter para manter): ", input);
+            if (CPF.isBlank()) {
+                break;
+            }
+
+            if (CPF.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+                break;
+            } else {
+                MessagesHelper.error("Formato de CPF inválido! Use o formato xxx.xxx.xxx-xx");
+            }
+        }
+        String nome = InputHelper.inputString("|| Nome do usuário (" + usuarioExistente.getNomeCompleto() + ") (Enter para manter): ", input);
+        String email;
+        while (true) {
+            email = InputHelper.inputString("|| Email do usuário (" + usuarioExistente.getEmail() + ") (Enter para manter): ", input);
+            if (email.isBlank()) {
+                break;
+            }
+
+            String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+            if (email.matches(emailRegex)) {
+                break;
+            } else {
+                MessagesHelper.error("Formato de e-mail inválido! Ex: nome@dominio.com");
+            }
+        }
+        LocalDate dataNascimento = InputHelper.inputDateOptional("|| Data de nascimento do usuário (" + usuarioExistente.getDataNascimento() + ") (Enter para manter): ", usuarioExistente.getDataNascimento(), input);
+        Cargo cargo = InputHelper.inputCargo("|| Cargo do usuário (" + usuarioExistente.getCargo() + "): ", input);
+        Departamento departamento = InputHelper.inputDepartamento("|| Departamento do usuário (" + usuarioExistente.getDepartamento() + ") : ", input);
+        double salario = usuarioExistente.getSalario();
+        String salarioStr;
+        while (true) {
+            salarioStr = InputHelper.inputString("|| Salário do usuário (" + usuarioExistente.getSalario() + ") (Enter para manter): ", input);
+            if (salarioStr.isBlank()) {
+                break;
+            }
+            try {
+                double novoSalario = Double.parseDouble(salarioStr.replace(",", "."));
+                if (novoSalario < 0.0) {
+                    MessagesHelper.info("O salário não pode ser negativo.");
+                } else {
+                    salario = novoSalario;
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                MessagesHelper.error("Entrada inválida. Por favor, digite um número válido.");
+            }
+        }
+        LocalDate dataAdmissao = InputHelper.inputDateOptional("|| Data de admissão do usuário (" + usuarioExistente.getDataAdmissao() + ") (Enter para manter): ", usuarioExistente.getDataAdmissao(), input);
+        TipoUsuario tipoUsuario = InputHelper.inputTipoUsuario("|| Tipo de usuário (" + usuarioExistente.getTipoUsuario() + "): ", input);
+        String senha = null;
+        while(true){
+            senha = InputHelper.inputString("|| Senha do usuário (Enter para manter): ", input);
+            if(senha.isEmpty()){
+                break;
+            }else if (senha.length() < 8) {
+                MessagesHelper.error("A senha deve ter no mínimo 8 caracteres!");
+            }else if (!senha.matches(".*[0-9].*")) {
+                MessagesHelper.error("A senha deve ter pelo menos 1 número!");
+            }else if (!senha.matches(".*[!@#$%^&*(),.?\":{}|<>].*")) {
+                MessagesHelper.error("A senha deve ter pelo menos 1 caractere especial!");
+            }else{
+                break;
+            }
+        }
+
+        if (!CPF.isBlank()) {
+            usuarioExistente.setCPF(CPF);
+        }
+        if (!nome.isBlank()) {
+            usuarioExistente.setNomeCompleto(nome);
+        }
+        if (!email.isBlank()) {
+            usuarioExistente.setEmail(email);
+        }
+
+        usuarioExistente.setDataNascimento(dataNascimento);
+
+        if (cargo != null) {
+            usuarioExistente.setCargo(cargo);
+        }
+        if (departamento != null) {
+            usuarioExistente.setDepartamento(departamento);
+        }
+        if (!salarioStr.isBlank()) {
+            usuarioExistente.setSalario(salario);
+        }
+
+        usuarioExistente.setDataAdmissao(dataAdmissao);
+
+        if (tipoUsuario != null) {
+            usuarioExistente.setTipoUsuario(tipoUsuario);
+        }
+        if (!senha.isEmpty()) {
+            usuarioExistente.setSenha(senha);
+        }
+
+        return usuarioExistente;
+
+    }
+
+    public static HistoricoSaida inativarUsuario(Usuario usuario) {
+        System.out.println("\n|| ---------- Inativar Usuário ---------- ||");
+        System.out.println("|| Usuário: " + usuario.getNomeCompleto());
+
+        return HistoricoSaidaView.coletarDadosSaida(usuario);
+    }
+
+    public static void listarUsuario (List<Usuario> usuarios){
+        System.out.println("\n|| ------- Listar usuários ------- ||");
+        if(usuarios.isEmpty()) {
+            MessagesHelper.error("Nenhum usuário cadastrado.");
+            return;
+        }else{
+            System.out.println();
+            for(Usuario usuario : usuarios){
+
+                System.out.println("|| ------------------------------------------------------------");
+
+                System.out.println("|| ID: "+ usuario.getId());
+                System.out.println("|| Nome do colaborador: "+ usuario.getNomeCompleto());
+                System.out.println("|| Cargo do colaborador: "+ usuario.getCargo().getNome());
+                System.out.println("|| Departamento do colaborador: "+ usuario.getDepartamento().getNome());
+
+                System.out.println("|| -------------------------------------------------------------");
+
+
+            }
+        }
+    }
+
+    public static int buscarUsuario(){
+        System.out.println("\n|| ------- Buscar usuário ------- ||");
+        return InputHelper.inputInteger("|| ID do usuário: ", input);
+    }
+
+    public static void listarUsuariosInativos (List<HistoricoSaida> historicoSaidas){
+        System.out.println("\n|| ------- Listar usuários inátivos------- ||");
+        if(historicoSaidas.isEmpty()) {
+            MessagesHelper.error("Nenhum usuário inativo encontrado.");
+            return;
+        }else{
+            for(HistoricoSaida historicoSaida : historicoSaidas){
+                System.out.println("|| ID: "+ historicoSaida.getUsuarioId());
+                System.out.println("|| Data de saída: "+ historicoSaida.getDataSaida());
+                System.out.println("|| Motivo da saída do colaborador: "+ historicoSaida.getMotivo());
+                System.out.println("|| ------------------------------------------------------------------");
+            }
+        }
+    }
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+

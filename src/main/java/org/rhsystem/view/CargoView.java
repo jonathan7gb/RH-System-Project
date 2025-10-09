@@ -1,0 +1,76 @@
+package org.rhsystem.view;
+
+import org.rhsystem.model.Cargo;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class CargoView {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static int menuCargo(){
+        System.out.println("\n|| ---------- Cargo ---------- ||");
+        System.out.println("|| 1 - Cadastrar Cargo");
+        System.out.println("|| 2 - Editar Cargo");
+        System.out.println("|| 3 - Listar Cargos");
+        System.out.println("|| 4 - Buscar Cargo");
+        System.out.println("|| 0 - Voltar ao Menu Principal");
+        return InputHelper.inputInteger("|| Escolha uma opção: ", input);
+    }
+
+    public static Cargo cadastrarCargo(){
+        System.out.println("\n|| ---------- Cadastrar Cargo ---------- ||");
+
+        String nome = InputHelper.inputString("|| Nome do Cargo: ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Cargo: ", input);
+
+        Cargo cargo = null;
+
+        if(!nome.isBlank() && !descricao.isBlank()){
+            cargo = new Cargo(nome, descricao);
+        }
+        return cargo;
+    }
+
+    public static Cargo editarCargo(Cargo cargo){
+        System.out.println("\n|| ---------- Editar Cargo ---------- ||");
+
+        String nome = InputHelper.inputString("|| Nome do Cargo (" + cargo.getNome() + ") (Enter para manter): ", input);
+        String descricao = InputHelper.inputString("|| Descrição do Cargo (Enter para manter): ", input);
+
+        if(!nome.isBlank()){
+            cargo.setNome(nome);
+        }
+        if(!descricao.isBlank()){
+            cargo.setDescricao(descricao);
+        }
+
+        if(descricao.isEmpty() && nome.isEmpty()){
+            MessagesHelper.info("A edição será confirmada, porém você manteve tudo como estava!");
+        }
+
+        return cargo;
+    }
+
+    public static void listarCargos(List<Cargo> cargos){
+        System.out.println("\n|| ---------- Listar Cargos ---------- ||\n");
+
+        if(cargos.isEmpty()){
+            MessagesHelper.error("Nenhum cargo cadastrado.");
+            return;
+        }else {
+
+            System.out.printf("|| %-3s || %-30s || %-80s ||\n", "ID", "NOME", "DESCRIÇÃO");
+            for (Cargo cargo : cargos) {
+                System.out.printf("|| %-3d || %-30s || %-80s ||\n", cargo.getId(), cargo.getNome(), cargo.getDescricao());
+            }
+        }
+    }
+
+    public static int buscarCargo(){
+        System.out.println("\n|| ---------- Buscar Cargo ---------- ||");
+
+        return InputHelper.inputInteger("|| ID do Cargo: ", input);
+    }
+}
